@@ -46,19 +46,19 @@ groups:
   ## --------------------------------------------------------------------
   - interconnect
   ## --------------------------------------------------------------------
-  - gate_resource_groups_start
-  - resource_group_centos6
-  - resource_group_centos7
+  # - gate_resource_groups_start
+  # - resource_group_centos6
+  # - resource_group_centos7
   ## --------------------------------------------------------------------
   - gate_gpperfmon_start
   - gpperfmon_centos6
   - gpperfmon_centos7
   ## --------------------------------------------------------------------
   - gate_cli_start
-  - gpmovemirrors
-  - gpmovemirrors_ubuntu18
-  - gppkg
-  - gppkg_ubuntu18
+  # - gpmovemirrors
+  # - gpmovemirrors_ubuntu18
+  # - gppkg
+  # - gppkg_ubuntu18
   - analyzedb
   - analyzedb_ubuntu18
   - gpinitsystem
@@ -67,22 +67,22 @@ groups:
   - gpstate_ubuntu18
   - replication_slots
   - replication_slots_ubuntu18
-  - gpactivatestandby
-  - gpactivatestandby_ubuntu18
+  # - gpactivatestandby
+  # - gpactivatestandby_ubuntu18
   - gpinitstandby
   - gpinitstandby_ubuntu18
-  - gpcheckcat
-  - gpcheckcat_ubuntu18
-  - gprecoverseg
-  - gprecoverseg_ubuntu18
-  - gpaddmirrors
-  - gpaddmirrors_ubuntu18
-  - gpconfig
-  - gpconfig_ubuntu18
-  - gpssh-exkeys
-  - gpssh-exkeys_ubuntu18
-  - gpstop
-  - gpstop_ubuntu18
+  # - gpcheckcat
+  # - gpcheckcat_ubuntu18
+  # - gprecoverseg
+  # - gprecoverseg_ubuntu18
+  # - gpaddmirrors
+  # - gpaddmirrors_ubuntu18
+  # - gpconfig
+  # - gpconfig_ubuntu18
+  # - gpssh-exkeys
+  # - gpssh-exkeys_ubuntu18
+  # - gpstop
+  # - gpstop_ubuntu18
   - check_centos
  ## ---------------------------------------------------------------------
   - icw_extensions_gpcloud_centos6
@@ -127,13 +127,13 @@ groups:
 
 ## ======================================================================
 
-- name: ResourceGroups
-  jobs:
-  - gate_resource_groups_start
-  - resource_group_centos6
-  - compile_gpdb_centos6
-  - resource_group_centos7
-  - compile_gpdb_centos7
+# - name: ResourceGroups
+#   jobs:
+#   - gate_resource_groups_start
+#   - resource_group_centos6
+#   - compile_gpdb_centos6
+#   - resource_group_centos7
+#   - compile_gpdb_centos7
 
 ## ======================================================================
 
@@ -151,10 +151,10 @@ groups:
   jobs:
   - gate_cli_start
   - compile_gpdb_ubuntu18.04
-  - gpmovemirrors
-  - gpmovemirrors_ubuntu18
-  - gppkg
-  - gppkg_ubuntu18
+  # - gpmovemirrors
+  # - gpmovemirrors_ubuntu18
+  # - gppkg
+  # - gppkg_ubuntu18
   - analyzedb
   - analyzedb_ubuntu18
   - gpinitsystem
@@ -163,22 +163,22 @@ groups:
   - gpstate_ubuntu18
   - replication_slots
   - replication_slots_ubuntu18
-  - gpactivatestandby
-  - gpactivatestandby_ubuntu18
+  # - gpactivatestandby
+  # - gpactivatestandby_ubuntu18
   - gpinitstandby
   - gpinitstandby_ubuntu18
-  - gpcheckcat
-  - gpcheckcat_ubuntu18
-  - gprecoverseg
-  - gprecoverseg_ubuntu18
-  - gpaddmirrors
-  - gpaddmirrors_ubuntu18
-  - gpconfig
-  - gpconfig_ubuntu18
-  - gpssh-exkeys
-  - gpssh-exkeys_ubuntu18
-  - gpstop
-  - gpstop_ubuntu18
+  # - gpcheckcat
+  # - gpcheckcat_ubuntu18
+  # - gprecoverseg
+  # - gprecoverseg_ubuntu18
+  # - gpaddmirrors
+  # - gpaddmirrors_ubuntu18
+  # - gpconfig
+  # - gpconfig_ubuntu18
+  # - gpssh-exkeys
+  # - gpssh-exkeys_ubuntu18
+  # - gpstop
+  # - gpstop_ubuntu18
   - check_centos
   - compile_gpdb_centos6
 
@@ -194,7 +194,7 @@ groups:
 ## ======================================================================
 
 resource_types:
-- name: terraform
+- name: terarform
   type: docker-image
   source:
     repository: ljfranklin/terraform-resource
@@ -211,39 +211,39 @@ resource_types:
 ## ======================================================================
 
 resources:
-- name: ccp_src
-  icon: github-circle
-  type: git
-  source:
-    branch: {{ccp-git-branch}}
-    private_key: {{ccp-git-key}}
-    uri: {{ccp-git-remote}}
+# - name: ccp_src
+#   icon: github-circle
+#   type: git
+#   source:
+#     branch: {{ccp-git-branch}}
+#     private_key: {{ccp-git-key}}
+#     uri: {{ccp-git-remote}}
 
-- name: terraform
-  icon: terraform
-  type: terraform
-  source:
-    env:
-      AWS_ACCESS_KEY_ID: {{tf-machine-access-key-id}}
-      AWS_SECRET_ACCESS_KEY: {{tf-machine-secret-access-key}}
-      GOOGLE_CREDENTIALS: {{google-service-account-key}}
-    vars:
-      project_id: {{google-project-id}}
-    storage:
-      access_key_id: {{tf-machine-access-key-id}}
-      secret_access_key: {{tf-machine-secret-access-key}}
-      region_name: {{aws-region}}
-      # This is not parameterized, on purpose. All tfstates will go to this spot,
-      # and different teams will place there clusters' tfstate files under different paths
-      bucket: gpdb5-pipeline-dynamic-terraform
-      bucket_path: clusters-google/
+# - name: terraform
+#   icon: terraform
+#   type: terraform
+#   source:
+#     env:
+#       AWS_ACCESS_KEY_ID: {{tf-machine-access-key-id}}
+#       AWS_SECRET_ACCESS_KEY: {{tf-machine-secret-access-key}}
+#       GOOGLE_CREDENTIALS: {{google-service-account-key}}
+#     vars:
+#       project_id: {{google-project-id}}
+#     storage:
+#       access_key_id: {{tf-machine-access-key-id}}
+#       secret_access_key: {{tf-machine-secret-access-key}}
+#       region_name: {{aws-region}}
+#       # This is not parameterized, on purpose. All tfstates will go to this spot,
+#       # and different teams will place there clusters' tfstate files under different paths
+#       bucket: gpdb5-pipeline-dynamic-terraform
+#       bucket_path: clusters-google/
 
-- name: ccp-image
-  icon: docker
-  type: docker-image
-  source:
-    repository: pivotaldata/ccp
-    tag: '7'
+# - name: ccp-image
+#   icon: docker
+#   type: docker-image
+#   source:
+#     repository: pivotaldata/ccp
+#     tag: '7'
 
 - name: icw_gporca_centos6_dump
   icon: google
@@ -477,7 +477,7 @@ anchors:
 - &ccp_default_vars
   instance_type: n1-standard-1
   PLATFORM: centos6
-  ccp_reap_minutes: 240
+  ccp_reap_minutes: 60
 
 - &ccp_destroy
   put: terraform
@@ -638,21 +638,16 @@ jobs:
       resource: libsigar-centos6
     - get: python-tarball
       resource: python-centos6
-  - task: compile_gpdb
-    file: gpdb_src/concourse/tasks/compile_gpdb.yml
-    image: gpdb6-centos6-build
-    params:
-      CONFIGURE_FLAGS: {{configure_flags_with_extensions}}
-      TARGET_OS: centos
-      TARGET_OS_VERSION: 6
-      BLD_TARGETS: "clients"
-  - in_parallel:
-    - put: bin_gpdb_centos6
-      params:
-        file: gpdb_artifacts/bin_gpdb.tar.gz
-    - put: bin_gpdb_clients_centos6
-      params:
-        file: gpdb_artifacts/gpdb-clients-centos6.tar.gz
+    - get: bin_gpdb_centos6
+    - get: bin_gpdb_clients_centos6
+  # - task: compile_gpdb
+  #   file: gpdb_src/concourse/tasks/compile_gpdb.yml
+  #   image: gpdb6-centos6-build
+  #   params:
+  #     CONFIGURE_FLAGS: {{configure_flags_with_extensions}}
+  #     TARGET_OS: centos
+  #     TARGET_OS_VERSION: 6
+  #     BLD_TARGETS: "clients"
 
 - name: compile_gpdb_centos7
   plan:
@@ -668,21 +663,16 @@ jobs:
       resource: libsigar-centos7
     - get: python-tarball
       resource: python-centos7
-  - task: compile_gpdb
-    image: gpdb6-centos7-build
-    file: gpdb_src/concourse/tasks/compile_gpdb.yml
-    params:
-      CONFIGURE_FLAGS: {{configure_flags_with_extensions}}
-      TARGET_OS: centos
-      TARGET_OS_VERSION: 7
-      BLD_TARGETS: "clients"
-  - in_parallel:
-    - put: bin_gpdb_centos7
-      params:
-        file: gpdb_artifacts/bin_gpdb.tar.gz
-    - put: bin_gpdb_clients_centos7
-      params:
-        file: gpdb_artifacts/gpdb-clients-centos7.tar.gz
+    - get: bin_gpdb_centos7
+    - get: bin_gpdb_clients_centos7
+  # - task: compile_gpdb
+  #   image: gpdb6-centos7-build
+  #   file: gpdb_src/concourse/tasks/compile_gpdb.yml
+  #   params:
+  #     CONFIGURE_FLAGS: {{configure_flags_with_extensions}}
+  #     TARGET_OS: centos
+  #     TARGET_OS_VERSION: 7
+  #     BLD_TARGETS: "clients"
 
 - name: compile_gpdb_binary_swap_centos6
   plan:
@@ -703,18 +693,15 @@ jobs:
       resource: libsigar-centos6
     - get: python-tarball
       resource: python-centos6
-  - task: compile_gpdb
-    file: gpdb_src/concourse/tasks/compile_gpdb.yml
-    image: gpdb6-centos6-build
-    params:
-      CONFIGURE_FLAGS: {{configure_flags_with_extensions}}
-      TARGET_OS: centos
-      TARGET_OS_VERSION: 6
-      BLD_TARGETS: "clients loaders"
-  - in_parallel:
-    - put: binary_swap_gpdb_centos6
-      params:
-        file: gpdb_artifacts/bin_gpdb.tar.gz
+    - get: binary_swap_gpdb_centos6
+  # - task: compile_gpdb
+  #   file: gpdb_src/concourse/tasks/compile_gpdb.yml
+  #   image: gpdb6-centos6-build
+  #   params:
+  #     CONFIGURE_FLAGS: {{configure_flags_with_extensions}}
+  #     TARGET_OS: centos
+  #     TARGET_OS_VERSION: 6
+  #     BLD_TARGETS: "clients loaders"
 
 - name: compile_gpdb_ubuntu18.04
   plan:
@@ -726,21 +713,16 @@ jobs:
           resource: libquicklz-ubuntu18.04
         - get: python-tarball
           resource: python-ubuntu18.04
-    - task: compile_gpdb
-      image: gpdb6-ubuntu18.04-build
-      file: gpdb_src/concourse/tasks/compile_gpdb.yml
-      params:
-        CONFIGURE_FLAGS: {{configure_flags_with_extensions}}
-        TARGET_OS: ubuntu
-        TARGET_OS_VERSION: "18.04"
-        BLD_TARGETS: "clients"
-    - in_parallel:
-        - put: bin_gpdb_ubuntu18.04
-          params:
-            file: gpdb_artifacts/bin_gpdb.tar.gz
-        - put: bin_gpdb_clients_ubuntu18.04
-          params:
-            file: gpdb_artifacts/gpdb-clients-ubuntu18.04.tar.gz
+        - get: bin_gpdb_ubuntu18.04
+        - get: bin_gpdb_clients_ubuntu18.04
+    # - task: compile_gpdb
+    #   image: gpdb6-ubuntu18.04-build
+    #   file: gpdb_src/concourse/tasks/compile_gpdb.yml
+    #   params:
+    #     CONFIGURE_FLAGS: {{configure_flags_with_extensions}}
+    #     TARGET_OS: ubuntu
+    #     TARGET_OS_VERSION: "18.04"
+    #     BLD_TARGETS: "clients"
 
 ## ======================================================================
 ##  ___ ______        __
@@ -951,100 +933,100 @@ jobs:
 ##                                                               |_|
 ## ======================================================================
 
-- name: gate_resource_groups_start
-  plan:
-  - in_parallel:
-    - get: gpdb_src
-      passed:
-      - compile_gpdb_centos6
-      - compile_gpdb_centos7
-      trigger: true
-    - get: bin_gpdb_centos6
-      passed:
-      - compile_gpdb_centos6
-    - get: bin_gpdb_centos7
-      passed:
-      - compile_gpdb_centos7
-    - get: binary_swap_gpdb
-      passed: [compile_gpdb_binary_swap_centos6]
-      resource: binary_swap_gpdb_centos6
-      trigger: true
+# - name: gate_resource_groups_start
+#   plan:
+#   - in_parallel:
+#     - get: gpdb_src
+#       passed:
+#       - compile_gpdb_centos6
+#       - compile_gpdb_centos7
+#       trigger: true
+#     - get: bin_gpdb_centos6
+#       passed:
+#       - compile_gpdb_centos6
+#     - get: bin_gpdb_centos7
+#       passed:
+#       - compile_gpdb_centos7
+#     - get: binary_swap_gpdb
+#       passed: [compile_gpdb_binary_swap_centos6]
+#       resource: binary_swap_gpdb_centos6
+#       trigger: true
 
-- name: resource_group_centos6
-  plan:
-  - in_parallel:
-    - get: gpdb_src
-      passed: [gate_resource_groups_start]
-    - get: gpdb_binary
-      resource: bin_gpdb_centos6
-      passed: [gate_resource_groups_start]
-      trigger: true
-    - get: ccp_src
-    - get: ccp-image
-    - get: binary_swap_gpdb
-      passed: [gate_resource_groups_start]
-      resource: binary_swap_gpdb_centos6
-      trigger: true
-  - put: terraform
-    params:
-      <<: *ccp_default_params
-      vars:
-        <<: *ccp_default_vars
-        instance_type: n1-standard-2
-  - task: gen_cluster
-    file: ccp_src/ci/tasks/gen_cluster.yml
-    params:
-      <<: *ccp_gen_cluster_default_params
-  - task: gpinitsystem
-    file: ccp_src/ci/tasks/gpinitsystem.yml
-  - task: run_tests
-    file: gpdb_src/concourse/tasks/ic_gpdb_resgroup.yml
-    image: ccp-image
-    params:
-      TEST_OS: centos6
-    on_success:
-      <<: *ccp_destroy
-  ensure:
-    <<: *set_failed
+# - name: resource_group_centos6
+#   plan:
+#   - in_parallel:
+#     - get: gpdb_src
+#       passed: [gate_resource_groups_start]
+#     - get: gpdb_binary
+#       resource: bin_gpdb_centos6
+#       passed: [gate_resource_groups_start]
+#       trigger: true
+#     - get: ccp_src
+#     - get: ccp-image
+#     - get: binary_swap_gpdb
+#       passed: [gate_resource_groups_start]
+#       resource: binary_swap_gpdb_centos6
+#       trigger: true
+#   - put: terraform
+#     params:
+#       <<: *ccp_default_params
+#       vars:
+#         <<: *ccp_default_vars
+#         instance_type: n1-standard-2
+#   - task: gen_cluster
+#     file: ccp_src/ci/tasks/gen_cluster.yml
+#     params:
+#       <<: *ccp_gen_cluster_default_params
+#   - task: gpinitsystem
+#     file: ccp_src/ci/tasks/gpinitsystem.yml
+#   - task: run_tests
+#     file: gpdb_src/concourse/tasks/ic_gpdb_resgroup.yml
+#     image: ccp-image
+#     params:
+#       TEST_OS: centos6
+#     on_success:
+#       <<: *ccp_destroy
+#   ensure:
+#     <<: *set_failed
 
-- name: resource_group_centos7
-  plan:
-  - in_parallel:
-    - get: gpdb_src
-      passed: [gate_resource_groups_start]
-    - get: gpdb_binary
-      resource: bin_gpdb_centos7
-      passed: [gate_resource_groups_start]
-      trigger: true
-    - get: ccp_src
-    - get: ccp-image
-    - get: binary_swap_gpdb
-      passed: [gate_resource_groups_start]
-      resource: binary_swap_gpdb_centos6
-      trigger: true
-  - put: terraform
-    params:
-      <<: *ccp_default_params
-      vars:
-        <<: *ccp_default_vars
-        PLATFORM: centos7
-        instance_type: n1-standard-2
-  - task: gen_cluster
-    file: ccp_src/ci/tasks/gen_cluster.yml
-    params:
-      <<: *ccp_gen_cluster_default_params
-      PLATFORM: centos7
-  - task: gpinitsystem
-    file: ccp_src/ci/tasks/gpinitsystem.yml
-  - task: run_tests
-    file: gpdb_src/concourse/tasks/ic_gpdb_resgroup.yml
-    image: ccp-image
-    params:
-      TEST_OS: centos7
-    on_success:
-      <<: *ccp_destroy
-  ensure:
-    <<: *set_failed
+# - name: resource_group_centos7
+#   plan:
+#   - in_parallel:
+#     - get: gpdb_src
+#       passed: [gate_resource_groups_start]
+#     - get: gpdb_binary
+#       resource: bin_gpdb_centos7
+#       passed: [gate_resource_groups_start]
+#       trigger: true
+#     - get: ccp_src
+#     - get: ccp-image
+#     - get: binary_swap_gpdb
+#       passed: [gate_resource_groups_start]
+#       resource: binary_swap_gpdb_centos6
+#       trigger: true
+#   - put: terraform
+#     params:
+#       <<: *ccp_default_params
+#       vars:
+#         <<: *ccp_default_vars
+#         PLATFORM: centos7
+#         instance_type: n1-standard-2
+#   - task: gen_cluster
+#     file: ccp_src/ci/tasks/gen_cluster.yml
+#     params:
+#       <<: *ccp_gen_cluster_default_params
+#       PLATFORM: centos7
+#   - task: gpinitsystem
+#     file: ccp_src/ci/tasks/gpinitsystem.yml
+#   - task: run_tests
+#     file: gpdb_src/concourse/tasks/ic_gpdb_resgroup.yml
+#     image: ccp-image
+#     params:
+#       TEST_OS: centos7
+#     on_success:
+#       <<: *ccp_destroy
+#   ensure:
+#     <<: *set_failed
 
 
 
@@ -1192,281 +1174,271 @@ jobs:
       params:
         JSON_KEY: ((concourse-gcs-resources-service-account-key))
 
-- name: gpmovemirrors
-  plan:
-    - in_parallel:
-      - get: gpdb_src
-        params:
-          submodules:
-            - gpMgmt/bin/pythonSrc/ext
-        passed: [gate_cli_start]
-      - get: gpdb6-centos6-test
-      - get: gpdb6-centos7-test
-    - in_parallel:
-      - do:
-        - get: gpdb_binary
-          resource: bin_gpdb_centos6
-          passed: [gate_cli_start]
-          trigger: true
-        - get: ccp_src
-        - get: ccp-image
-        - put: terraform
-          params:
-            <<: *ccp_default_params
-            vars:
-              <<: *ccp_default_vars
-              instance_type: n1-standard-2
-              number_of_nodes: 4
-        - task: gen_cluster
-          file: ccp_src/ci/tasks/gen_cluster.yml
-          params:
-            <<: *ccp_gen_cluster_default_params
-        - task: gpinitsystem
-          file: ccp_src/ci/tasks/gpinitsystem.yml
-        - task: gpmovemirrors_concourse_cluster_tests
-          file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
-          image: ccp-image
-          params:
-            BEHAVE_FLAGS: --tags=gpmovemirrors --tags=concourse_cluster
-            TEST_NAME: gpmovemirrors
-            
-          on_success:
-            <<: *ccp_destroy
-          ensure:
-            <<: *set_failed
-          output_mapping:
-            coverage: ccp-coverage
-        - task: publish_ccp_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: ccp-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./ccp-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
-      - do:
-        - get: bin_gpdb
-          resource: bin_gpdb_centos6
-          passed: [gate_cli_start]
-          trigger: true
-        - task: gpmovemirrors_demo_cluster_tests
-          file: gpdb_src/concourse/tasks/behave_gpdb.yml
-          image: gpdb6-centos6-test
-          params:
-            BEHAVE_FLAGS: --tags=gpmovemirrors --tags=~concourse_cluster,demo_cluster
-            TEST_NAME: gpmovemirrors
-            
-          output_mapping:
-            coverage: demo-coverage
-        - task: publish_demo_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: demo-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
+# - name: gpmovemirrors
+#   plan:
+#     - in_parallel:
+#       - get: gpdb_src
+#         params:
+#           submodules:
+#             - gpMgmt/bin/pythonSrc/ext
+#         passed: [gate_cli_start]
+#       - get: gpdb6-centos6-test
+#       - get: gpdb6-centos7-test
+#     - in_parallel:
+#       - do:
+#         - get: gpdb_binary
+#           resource: bin_gpdb_centos6
+#           passed: [gate_cli_start]
+#           trigger: true
+#         - get: ccp_src
+#         - get: ccp-image
+#         - put: terraform
+#           params:
+#             <<: *ccp_default_params
+#             vars:
+#               <<: *ccp_default_vars
+#               instance_type: n1-standard-2
+#               number_of_nodes: 4
+#         - task: gen_cluster
+#           file: ccp_src/ci/tasks/gen_cluster.yml
+#           params:
+#             <<: *ccp_gen_cluster_default_params
+#         - task: gpinitsystem
+#           file: ccp_src/ci/tasks/gpinitsystem.yml
+#         - task: gpmovemirrors_concourse_cluster_tests
+#           file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
+#           image: ccp-image
+#           params:
+#             BEHAVE_FLAGS: --tags=gpmovemirrors --tags=concourse_cluster
+#             TEST_NAME: gpmovemirrors
+#           on_success:
+#             <<: *ccp_destroy
+#           ensure:
+#             <<: *set_failed
+#           output_mapping:
+#             coverage: ccp-coverage
+#         - task: publish_ccp_coverage
+#           image: gpdb6-centos7-test
+#           config:
+#             platform: linux
+#             inputs:
+#               - name: gpdb_src
+#               - name: ccp-coverage
+#             run:
+#               path: gpdb_src/concourse/scripts/gsutil_sync
+#               args: [ "./ccp-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+#             params:
+#               JSON_KEY: ((concourse-gcs-resources-service-account-key))
+#       - do:
+#         - get: bin_gpdb
+#           resource: bin_gpdb_centos6
+#           passed: [gate_cli_start]
+#           trigger: true
+#         - task: gpmovemirrors_demo_cluster_tests
+#           file: gpdb_src/concourse/tasks/behave_gpdb.yml
+#           image: gpdb6-centos6-test
+#           params:
+#             BEHAVE_FLAGS: --tags=gpmovemirrors --tags=~concourse_cluster,demo_cluster
+#             TEST_NAME: gpmovemirrors
+#           output_mapping:
+#             coverage: demo-coverage
+#         - task: publish_demo_coverage
+#           image: gpdb6-centos7-test
+#           config:
+#             platform: linux
+#             inputs:
+#               - name: gpdb_src
+#               - name: demo-coverage
+#             run:
+#               path: gpdb_src/concourse/scripts/gsutil_sync
+#               args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+#             params:
+#               JSON_KEY: ((concourse-gcs-resources-service-account-key))
 
-- name: gpmovemirrors_ubuntu18
-  plan:
-    - in_parallel:
-      - get: gpdb_src
-        params:
-          submodules:
-            - gpMgmt/bin/pythonSrc/ext
-        passed: [compile_gpdb_ubuntu18.04]
-      - get: gpdb6-ubuntu18.04-test
-    - in_parallel:
-      - do:
-        - get: gpdb_binary
-          resource: bin_gpdb_ubuntu18.04
-          passed: [compile_gpdb_ubuntu18.04]
-          trigger: true
-        - get: ccp_src
-        - put: terraform
-          params:
-            <<: *ccp_default_params
-            vars:
-              <<: *ccp_default_vars
-              instance_type: n1-standard-2
-              PLATFORM: ubuntu18.04
-              number_of_nodes: 4
-        - task: gen_cluster
-          file: ccp_src/ci/tasks/gen_cluster.yml
-          params:
-            <<: *ccp_gen_cluster_default_params
-            PLATFORM: ubuntu18.04
-        - task: gpinitsystem
-          file: ccp_src/ci/tasks/gpinitsystem.yml
-        - task: gpmovemirrors_concourse_cluster_tests
-          file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
-          image: gpdb6-ubuntu18.04-test
-          params:
-            BEHAVE_FLAGS: --tags=gpmovemirrors --tags=concourse_cluster
-            
-          on_success:
-            <<: *ccp_destroy
-          ensure:
-            <<: *set_failed
-      - do:
-        - get: bin_gpdb_ubuntu18.04
-          resource: bin_gpdb_ubuntu18.04
-          passed: [compile_gpdb_ubuntu18.04]
-          trigger: true
-        - task: gpmovemirrors_demo_cluster_tests
-          file: gpdb_src/concourse/tasks/behave_gpdb.yml
-          image: gpdb6-ubuntu18.04-test
-          input_mapping:
-            bin_gpdb: bin_gpdb_ubuntu18.04
-          params:
-            BEHAVE_FLAGS: --tags=gpmovemirrors --tags=~concourse_cluster,demo_cluster
-            
+# - name: gpmovemirrors_ubuntu18
+#   plan:
+#     - in_parallel:
+#       - get: gpdb_src
+#         params:
+#           submodules:
+#             - gpMgmt/bin/pythonSrc/ext
+#         passed: [compile_gpdb_ubuntu18.04]
+#       - get: gpdb6-ubuntu18.04-test
+#     - in_parallel:
+#       - do:
+#         - get: gpdb_binary
+#           resource: bin_gpdb_ubuntu18.04
+#           passed: [compile_gpdb_ubuntu18.04]
+#           trigger: true
+#         - get: ccp_src
+#         - put: terraform
+#           params:
+#             <<: *ccp_default_params
+#             vars:
+#               <<: *ccp_default_vars
+#               instance_type: n1-standard-2
+#               PLATFORM: ubuntu18.04
+#               number_of_nodes: 4
+#         - task: gen_cluster
+#           file: ccp_src/ci/tasks/gen_cluster.yml
+#           params:
+#             <<: *ccp_gen_cluster_default_params
+#             PLATFORM: ubuntu18.04
+#         - task: gpinitsystem
+#           file: ccp_src/ci/tasks/gpinitsystem.yml
+#         - task: gpmovemirrors_concourse_cluster_tests
+#           file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
+#           image: gpdb6-ubuntu18.04-test
+#           params:
+#             BEHAVE_FLAGS: --tags=gpmovemirrors --tags=concourse_cluster
+#           on_success:
+#             <<: *ccp_destroy
+#           ensure:
+#             <<: *set_failed
+#       - do:
+#         - get: bin_gpdb_ubuntu18.04
+#           resource: bin_gpdb_ubuntu18.04
+#           passed: [compile_gpdb_ubuntu18.04]
+#           trigger: true
+#         - task: gpmovemirrors_demo_cluster_tests
+#           file: gpdb_src/concourse/tasks/behave_gpdb.yml
+#           image: gpdb6-ubuntu18.04-test
+#           input_mapping:
+#             bin_gpdb: bin_gpdb_ubuntu18.04
+#           params:
+#             BEHAVE_FLAGS: --tags=gpmovemirrors --tags=~concourse_cluster,demo_cluster
 
-- name: gppkg
-  plan:
-    - in_parallel:
-      - get: gpdb_src
-        params:
-          submodules:
-            - gpMgmt/bin/pythonSrc/ext
-        passed: [gate_cli_start]
-      - get: gpdb6-centos6-test
-      - get: gpdb6-centos7-test
-    - in_parallel:
-      - do:
-        - get: gpdb_binary
-          resource: bin_gpdb_centos6
-          passed: [gate_cli_start]
-          trigger: true
-        - get: ccp_src
-        - get: ccp-image
-        - put: terraform
-          params:
-            <<: *ccp_default_params
-            vars:
-              <<: *ccp_default_vars
-              instance_type: n1-standard-2
-              
-        - task: gen_cluster
-          file: ccp_src/ci/tasks/gen_cluster.yml
-          params:
-            <<: *ccp_gen_cluster_default_params
-        - task: gpinitsystem
-          file: ccp_src/ci/tasks/gpinitsystem.yml
-        - task: gppkg_concourse_cluster_tests
-          file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
-          image: ccp-image
-          params:
-            BEHAVE_FLAGS: --tags=gppkg --tags=concourse_cluster
-            TEST_NAME: gppkg
-            
-          on_success:
-            <<: *ccp_destroy
-          ensure:
-            <<: *set_failed
-          output_mapping:
-            coverage: ccp-coverage
-        - task: publish_ccp_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: ccp-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./ccp-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
-      - do:
-        - get: bin_gpdb
-          resource: bin_gpdb_centos6
-          passed: [gate_cli_start]
-          trigger: true
-        - task: gppkg_demo_cluster_tests
-          file: gpdb_src/concourse/tasks/behave_gpdb.yml
-          image: gpdb6-centos6-test
-          params:
-            BEHAVE_FLAGS: --tags=gppkg --tags=~concourse_cluster,demo_cluster
-            TEST_NAME: gppkg
-            
-          output_mapping:
-            coverage: demo-coverage
-        - task: publish_demo_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: demo-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
+# - name: gppkg
+#   plan:
+#     - in_parallel:
+#       - get: gpdb_src
+#         params:
+#           submodules:
+#             - gpMgmt/bin/pythonSrc/ext
+#         passed: [gate_cli_start]
+#       - get: gpdb6-centos6-test
+#       - get: gpdb6-centos7-test
+#     - in_parallel:
+#       - do:
+#         - get: gpdb_binary
+#           resource: bin_gpdb_centos6
+#           passed: [gate_cli_start]
+#           trigger: true
+#         - get: ccp_src
+#         - get: ccp-image
+#         - put: terraform
+#           params:
+#             <<: *ccp_default_params
+#             vars:
+#               <<: *ccp_default_vars
+#               instance_type: n1-standard-2
+#         - task: gen_cluster
+#           file: ccp_src/ci/tasks/gen_cluster.yml
+#           params:
+#             <<: *ccp_gen_cluster_default_params
+#         - task: gpinitsystem
+#           file: ccp_src/ci/tasks/gpinitsystem.yml
+#         - task: gppkg_concourse_cluster_tests
+#           file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
+#           image: ccp-image
+#           params:
+#             BEHAVE_FLAGS: --tags=gppkg --tags=concourse_cluster
+#             TEST_NAME: gppkg
+#           on_success:
+#             <<: *ccp_destroy
+#           ensure:
+#             <<: *set_failed
+#           output_mapping:
+#             coverage: ccp-coverage
+#         - task: publish_ccp_coverage
+#           image: gpdb6-centos7-test
+#           config:
+#             platform: linux
+#             inputs:
+#               - name: gpdb_src
+#               - name: ccp-coverage
+#             run:
+#               path: gpdb_src/concourse/scripts/gsutil_sync
+#               args: [ "./ccp-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+#             params:
+#               JSON_KEY: ((concourse-gcs-resources-service-account-key))
+#       - do:
+#         - get: bin_gpdb
+#           resource: bin_gpdb_centos6
+#           passed: [gate_cli_start]
+#           trigger: true
+#         - task: gppkg_demo_cluster_tests
+#           file: gpdb_src/concourse/tasks/behave_gpdb.yml
+#           image: gpdb6-centos6-test
+#           params:
+#             BEHAVE_FLAGS: --tags=gppkg --tags=~concourse_cluster,demo_cluster
+#             TEST_NAME: gppkg
+#           output_mapping:
+#             coverage: demo-coverage
+#         - task: publish_demo_coverage
+#           image: gpdb6-centos7-test
+#           config:
+#             platform: linux
+#             inputs:
+#               - name: gpdb_src
+#               - name: demo-coverage
+#             run:
+#               path: gpdb_src/concourse/scripts/gsutil_sync
+#               args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+#             params:
+#               JSON_KEY: ((concourse-gcs-resources-service-account-key))
 
-- name: gppkg_ubuntu18
-  plan:
-    - in_parallel:
-      - get: gpdb_src
-        params:
-          submodules:
-            - gpMgmt/bin/pythonSrc/ext
-        passed: [compile_gpdb_ubuntu18.04]
-      - get: gpdb6-ubuntu18.04-test
-    - in_parallel:
-      - do:
-        - get: gpdb_binary
-          resource: bin_gpdb_ubuntu18.04
-          passed: [compile_gpdb_ubuntu18.04]
-          trigger: true
-        - get: ccp_src
-        - put: terraform
-          params:
-            <<: *ccp_default_params
-            vars:
-              <<: *ccp_default_vars
-              instance_type: n1-standard-2
-              PLATFORM: ubuntu18.04
-              
-        - task: gen_cluster
-          file: ccp_src/ci/tasks/gen_cluster.yml
-          params:
-            <<: *ccp_gen_cluster_default_params
-            PLATFORM: ubuntu18.04
-        - task: gpinitsystem
-          file: ccp_src/ci/tasks/gpinitsystem.yml
-        - task: gppkg_concourse_cluster_tests
-          file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
-          image: gpdb6-ubuntu18.04-test
-          params:
-            BEHAVE_FLAGS: --tags=gppkg --tags=concourse_cluster
-            
-          on_success:
-            <<: *ccp_destroy
-          ensure:
-            <<: *set_failed
-      - do:
-        - get: bin_gpdb_ubuntu18.04
-          resource: bin_gpdb_ubuntu18.04
-          passed: [compile_gpdb_ubuntu18.04]
-          trigger: true
-        - task: gppkg_demo_cluster_tests
-          file: gpdb_src/concourse/tasks/behave_gpdb.yml
-          image: gpdb6-ubuntu18.04-test
-          input_mapping:
-            bin_gpdb: bin_gpdb_ubuntu18.04
-          params:
-            BEHAVE_FLAGS: --tags=gppkg --tags=~concourse_cluster,demo_cluster
-            
+# - name: gppkg_ubuntu18
+#   plan:
+#     - in_parallel:
+#       - get: gpdb_src
+#         params:
+#           submodules:
+#             - gpMgmt/bin/pythonSrc/ext
+#         passed: [compile_gpdb_ubuntu18.04]
+#       - get: gpdb6-ubuntu18.04-test
+#     - in_parallel:
+#       - do:
+#         - get: gpdb_binary
+#           resource: bin_gpdb_ubuntu18.04
+#           passed: [compile_gpdb_ubuntu18.04]
+#           trigger: true
+#         - get: ccp_src
+#         - put: terraform
+#           params:
+#             <<: *ccp_default_params
+#             vars:
+#               <<: *ccp_default_vars
+#               instance_type: n1-standard-2
+#               PLATFORM: ubuntu18.04
+#         - task: gen_cluster
+#           file: ccp_src/ci/tasks/gen_cluster.yml
+#           params:
+#             <<: *ccp_gen_cluster_default_params
+#             PLATFORM: ubuntu18.04
+#         - task: gpinitsystem
+#           file: ccp_src/ci/tasks/gpinitsystem.yml
+#         - task: gppkg_concourse_cluster_tests
+#           file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
+#           image: gpdb6-ubuntu18.04-test
+#           params:
+#             BEHAVE_FLAGS: --tags=gppkg --tags=concourse_cluster
+#           on_success:
+#             <<: *ccp_destroy
+#           ensure:
+#             <<: *set_failed
+#       - do:
+#         - get: bin_gpdb_ubuntu18.04
+#           resource: bin_gpdb_ubuntu18.04
+#           passed: [compile_gpdb_ubuntu18.04]
+#           trigger: true
+#         - task: gppkg_demo_cluster_tests
+#           file: gpdb_src/concourse/tasks/behave_gpdb.yml
+#           image: gpdb6-ubuntu18.04-test
+#           input_mapping:
+#             bin_gpdb: bin_gpdb_ubuntu18.04
+#           params:
+#             BEHAVE_FLAGS: --tags=gppkg --tags=~concourse_cluster,demo_cluster
 
 - name: analyzedb
   plan:
@@ -1490,7 +1462,6 @@ jobs:
           params:
             BEHAVE_FLAGS: --tags=analyzedb --tags=~concourse_cluster,demo_cluster
             TEST_NAME: analyzedb
-            
           output_mapping:
             coverage: demo-coverage
         - task: publish_demo_coverage
@@ -1528,7 +1499,6 @@ jobs:
             bin_gpdb: bin_gpdb_ubuntu18.04
           params:
             BEHAVE_FLAGS: --tags=analyzedb --tags=~concourse_cluster,demo_cluster
-            
 
 - name: gpinitsystem
   plan:
@@ -1552,7 +1522,6 @@ jobs:
           params:
             BEHAVE_FLAGS: --tags=gpinitsystem --tags=~concourse_cluster,demo_cluster
             TEST_NAME: gpinitsystem
-            
           output_mapping:
             coverage: demo-coverage
         - task: publish_demo_coverage
@@ -1590,7 +1559,6 @@ jobs:
             bin_gpdb: bin_gpdb_ubuntu18.04
           params:
             BEHAVE_FLAGS: --tags=gpinitsystem --tags=~concourse_cluster,demo_cluster
-            
 
 - name: gpstate
   plan:
@@ -1614,7 +1582,6 @@ jobs:
           params:
             BEHAVE_FLAGS: --tags=gpstate --tags=~concourse_cluster,demo_cluster
             TEST_NAME: gpstate
-            
           output_mapping:
             coverage: demo-coverage
         - task: publish_demo_coverage
@@ -1714,145 +1681,138 @@ jobs:
             bin_gpdb: bin_gpdb_ubuntu18.04
           params:
             BEHAVE_FLAGS: --tags=replication_slots --tags=~concourse_cluster,demo_cluster
-            
 
-- name: gpactivatestandby
-  plan:
-    - in_parallel:
-      - get: gpdb_src
-        params:
-          submodules:
-            - gpMgmt/bin/pythonSrc/ext
-        passed: [gate_cli_start]
-      - get: gpdb6-centos6-test
-      - get: gpdb6-centos7-test
-    - in_parallel:
-      - do:
-        - get: gpdb_binary
-          resource: bin_gpdb_centos6
-          passed: [gate_cli_start]
-          trigger: true
-        - get: ccp_src
-        - get: ccp-image
-        - put: terraform
-          params:
-            <<: *ccp_default_params
-            vars:
-              <<: *ccp_default_vars
-              instance_type: n1-standard-2
-              
-        - task: gen_cluster
-          file: ccp_src/ci/tasks/gen_cluster.yml
-          params:
-            <<: *ccp_gen_cluster_default_params
-        - task: gpinitsystem
-          file: ccp_src/ci/tasks/gpinitsystem.yml
-        - task: gpactivatestandby_concourse_cluster_tests
-          file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
-          image: ccp-image
-          params:
-            BEHAVE_FLAGS: --tags=gpactivatestandby --tags=concourse_cluster
-            TEST_NAME: gpactivatestandby
-            
-          on_success:
-            <<: *ccp_destroy
-          ensure:
-            <<: *set_failed
-          output_mapping:
-            coverage: ccp-coverage
-        - task: publish_ccp_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: ccp-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./ccp-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
-      - do:
-        - get: bin_gpdb
-          resource: bin_gpdb_centos6
-          passed: [gate_cli_start]
-          trigger: true
-        - task: gpactivatestandby_demo_cluster_tests
-          file: gpdb_src/concourse/tasks/behave_gpdb.yml
-          image: gpdb6-centos6-test
-          params:
-            BEHAVE_FLAGS: --tags=gpactivatestandby --tags=~concourse_cluster,demo_cluster
-            TEST_NAME: gpactivatestandby
-            
-          output_mapping:
-            coverage: demo-coverage
-        - task: publish_demo_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: demo-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
+# - name: gpactivatestandby
+#   plan:
+#     - in_parallel:
+#       - get: gpdb_src
+#         params:
+#           submodules:
+#             - gpMgmt/bin/pythonSrc/ext
+#         passed: [gate_cli_start]
+#       - get: gpdb6-centos6-test
+#       - get: gpdb6-centos7-test
+#     - in_parallel:
+#       - do:
+#         - get: gpdb_binary
+#           resource: bin_gpdb_centos6
+#           passed: [gate_cli_start]
+#           trigger: true
+#         - get: ccp_src
+#         - get: ccp-image
+#         - put: terraform
+#           params:
+#             <<: *ccp_default_params
+#             vars:
+#               <<: *ccp_default_vars
+#               instance_type: n1-standard-2
+#         - task: gen_cluster
+#           file: ccp_src/ci/tasks/gen_cluster.yml
+#           params:
+#             <<: *ccp_gen_cluster_default_params
+#         - task: gpinitsystem
+#           file: ccp_src/ci/tasks/gpinitsystem.yml
+#         - task: gpactivatestandby_concourse_cluster_tests
+#           file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
+#           image: ccp-image
+#           params:
+#             BEHAVE_FLAGS: --tags=gpactivatestandby --tags=concourse_cluster
+#             TEST_NAME: gpactivatestandby
+#           on_success:
+#             <<: *ccp_destroy
+#           ensure:
+#             <<: *set_failed
+#           output_mapping:
+#             coverage: ccp-coverage
+#         - task: publish_ccp_coverage
+#           image: gpdb6-centos7-test
+#           config:
+#             platform: linux
+#             inputs:
+#               - name: gpdb_src
+#               - name: ccp-coverage
+#             run:
+#               path: gpdb_src/concourse/scripts/gsutil_sync
+#               args: [ "./ccp-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+#             params:
+#               JSON_KEY: ((concourse-gcs-resources-service-account-key))
+#       - do:
+#         - get: bin_gpdb
+#           resource: bin_gpdb_centos6
+#           passed: [gate_cli_start]
+#           trigger: true
+#         - task: gpactivatestandby_demo_cluster_tests
+#           file: gpdb_src/concourse/tasks/behave_gpdb.yml
+#           image: gpdb6-centos6-test
+#           params:
+#             BEHAVE_FLAGS: --tags=gpactivatestandby --tags=~concourse_cluster,demo_cluster
+#             TEST_NAME: gpactivatestandby
+#           output_mapping:
+#             coverage: demo-coverage
+#         - task: publish_demo_coverage
+#           image: gpdb6-centos7-test
+#           config:
+#             platform: linux
+#             inputs:
+#               - name: gpdb_src
+#               - name: demo-coverage
+#             run:
+#               path: gpdb_src/concourse/scripts/gsutil_sync
+#               args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+#             params:
+#               JSON_KEY: ((concourse-gcs-resources-service-account-key))
 
-- name: gpactivatestandby_ubuntu18
-  plan:
-    - in_parallel:
-      - get: gpdb_src
-        params:
-          submodules:
-            - gpMgmt/bin/pythonSrc/ext
-        passed: [compile_gpdb_ubuntu18.04]
-      - get: gpdb6-ubuntu18.04-test
-    - in_parallel:
-      - do:
-        - get: gpdb_binary
-          resource: bin_gpdb_ubuntu18.04
-          passed: [compile_gpdb_ubuntu18.04]
-          trigger: true
-        - get: ccp_src
-        - put: terraform
-          params:
-            <<: *ccp_default_params
-            vars:
-              <<: *ccp_default_vars
-              instance_type: n1-standard-2
-              PLATFORM: ubuntu18.04
-              
-        - task: gen_cluster
-          file: ccp_src/ci/tasks/gen_cluster.yml
-          params:
-            <<: *ccp_gen_cluster_default_params
-            PLATFORM: ubuntu18.04
-        - task: gpinitsystem
-          file: ccp_src/ci/tasks/gpinitsystem.yml
-        - task: gpactivatestandby_concourse_cluster_tests
-          file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
-          image: gpdb6-ubuntu18.04-test
-          params:
-            BEHAVE_FLAGS: --tags=gpactivatestandby --tags=concourse_cluster
-            
-          on_success:
-            <<: *ccp_destroy
-          ensure:
-            <<: *set_failed
-      - do:
-        - get: bin_gpdb_ubuntu18.04
-          resource: bin_gpdb_ubuntu18.04
-          passed: [compile_gpdb_ubuntu18.04]
-          trigger: true
-        - task: gpactivatestandby_demo_cluster_tests
-          file: gpdb_src/concourse/tasks/behave_gpdb.yml
-          image: gpdb6-ubuntu18.04-test
-          input_mapping:
-            bin_gpdb: bin_gpdb_ubuntu18.04
-          params:
-            BEHAVE_FLAGS: --tags=gpactivatestandby --tags=~concourse_cluster,demo_cluster
-            
+# - name: gpactivatestandby_ubuntu18
+#   plan:
+#     - in_parallel:
+#       - get: gpdb_src
+#         params:
+#           submodules:
+#             - gpMgmt/bin/pythonSrc/ext
+#         passed: [compile_gpdb_ubuntu18.04]
+#       - get: gpdb6-ubuntu18.04-test
+#     - in_parallel:
+#       - do:
+#         - get: gpdb_binary
+#           resource: bin_gpdb_ubuntu18.04
+#           passed: [compile_gpdb_ubuntu18.04]
+#           trigger: true
+#         - get: ccp_src
+#         - put: terraform
+#           params:
+#             <<: *ccp_default_params
+#             vars:
+#               <<: *ccp_default_vars
+#               instance_type: n1-standard-2
+#               PLATFORM: ubuntu18.04
+#         - task: gen_cluster
+#           file: ccp_src/ci/tasks/gen_cluster.yml
+#           params:
+#             <<: *ccp_gen_cluster_default_params
+#             PLATFORM: ubuntu18.04
+#         - task: gpinitsystem
+#           file: ccp_src/ci/tasks/gpinitsystem.yml
+#         - task: gpactivatestandby_concourse_cluster_tests
+#           file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
+#           image: gpdb6-ubuntu18.04-test
+#           params:
+#             BEHAVE_FLAGS: --tags=gpactivatestandby --tags=concourse_cluster
+#           on_success:
+#             <<: *ccp_destroy
+#           ensure:
+#             <<: *set_failed
+#       - do:
+#         - get: bin_gpdb_ubuntu18.04
+#           resource: bin_gpdb_ubuntu18.04
+#           passed: [compile_gpdb_ubuntu18.04]
+#           trigger: true
+#         - task: gpactivatestandby_demo_cluster_tests
+#           file: gpdb_src/concourse/tasks/behave_gpdb.yml
+#           image: gpdb6-ubuntu18.04-test
+#           input_mapping:
+#             bin_gpdb: bin_gpdb_ubuntu18.04
+#           params:
+#             BEHAVE_FLAGS: --tags=gpactivatestandby --tags=~concourse_cluster,demo_cluster
 
 - name: gpinitstandby
   plan:
@@ -1876,7 +1836,6 @@ jobs:
           params:
             BEHAVE_FLAGS: --tags=gpinitstandby --tags=~concourse_cluster,demo_cluster
             TEST_NAME: gpinitstandby
-            
           output_mapping:
             coverage: demo-coverage
         - task: publish_demo_coverage
@@ -1914,836 +1873,808 @@ jobs:
             bin_gpdb: bin_gpdb_ubuntu18.04
           params:
             BEHAVE_FLAGS: --tags=gpinitstandby --tags=~concourse_cluster,demo_cluster
-            
 
-- name: gpcheckcat
-  plan:
-    - in_parallel:
-      - get: gpdb_src
-        params:
-          submodules:
-            - gpMgmt/bin/pythonSrc/ext
-        passed: [gate_cli_start]
-      - get: gpdb6-centos6-test
-      - get: gpdb6-centos7-test
-    - in_parallel:
-      - do:
-        - get: gpdb_binary
-          resource: bin_gpdb_centos6
-          passed: [gate_cli_start]
-          trigger: true
-        - get: ccp_src
-        - get: ccp-image
-        - put: terraform
-          params:
-            <<: *ccp_default_params
-            vars:
-              <<: *ccp_default_vars
-              instance_type: n1-standard-2
-              
-        - task: gen_cluster
-          file: ccp_src/ci/tasks/gen_cluster.yml
-          params:
-            <<: *ccp_gen_cluster_default_params
-        - task: gpinitsystem
-          file: ccp_src/ci/tasks/gpinitsystem.yml
-        - task: gpcheckcat_concourse_cluster_tests
-          file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
-          image: ccp-image
-          params:
-            BEHAVE_FLAGS: --tags=gpcheckcat --tags=concourse_cluster
-            TEST_NAME: gpcheckcat
-            
-          on_success:
-            <<: *ccp_destroy
-          ensure:
-            <<: *set_failed
-          output_mapping:
-            coverage: ccp-coverage
-        - task: publish_ccp_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: ccp-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./ccp-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
-      - do:
-        - get: bin_gpdb
-          resource: bin_gpdb_centos6
-          passed: [gate_cli_start]
-          trigger: true
-        - task: gpcheckcat_demo_cluster_tests
-          file: gpdb_src/concourse/tasks/behave_gpdb.yml
-          image: gpdb6-centos6-test
-          params:
-            BEHAVE_FLAGS: --tags=gpcheckcat --tags=~concourse_cluster,demo_cluster
-            TEST_NAME: gpcheckcat
-            
-          output_mapping:
-            coverage: demo-coverage
-        - task: publish_demo_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: demo-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
+# - name: gpcheckcat
+#   plan:
+#     - in_parallel:
+#       - get: gpdb_src
+#         params:
+#           submodules:
+#             - gpMgmt/bin/pythonSrc/ext
+#         passed: [gate_cli_start]
+#       - get: gpdb6-centos6-test
+#       - get: gpdb6-centos7-test
+#     - in_parallel:
+#       - do:
+#         - get: gpdb_binary
+#           resource: bin_gpdb_centos6
+#           passed: [gate_cli_start]
+#           trigger: true
+#         - get: ccp_src
+#         - get: ccp-image
+#         - put: terraform
+#           params:
+#             <<: *ccp_default_params
+#             vars:
+#               <<: *ccp_default_vars
+#               instance_type: n1-standard-2
+#         - task: gen_cluster
+#           file: ccp_src/ci/tasks/gen_cluster.yml
+#           params:
+#             <<: *ccp_gen_cluster_default_params
+#         - task: gpinitsystem
+#           file: ccp_src/ci/tasks/gpinitsystem.yml
+#         - task: gpcheckcat_concourse_cluster_tests
+#           file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
+#           image: ccp-image
+#           params:
+#             BEHAVE_FLAGS: --tags=gpcheckcat --tags=concourse_cluster
+#             TEST_NAME: gpcheckcat
+#           on_success:
+#             <<: *ccp_destroy
+#           ensure:
+#             <<: *set_failed
+#           output_mapping:
+#             coverage: ccp-coverage
+#         - task: publish_ccp_coverage
+#           image: gpdb6-centos7-test
+#           config:
+#             platform: linux
+#             inputs:
+#               - name: gpdb_src
+#               - name: ccp-coverage
+#             run:
+#               path: gpdb_src/concourse/scripts/gsutil_sync
+#               args: [ "./ccp-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+#             params:
+#               JSON_KEY: ((concourse-gcs-resources-service-account-key))
+#       - do:
+#         - get: bin_gpdb
+#           resource: bin_gpdb_centos6
+#           passed: [gate_cli_start]
+#           trigger: true
+#         - task: gpcheckcat_demo_cluster_tests
+#           file: gpdb_src/concourse/tasks/behave_gpdb.yml
+#           image: gpdb6-centos6-test
+#           params:
+#             BEHAVE_FLAGS: --tags=gpcheckcat --tags=~concourse_cluster,demo_cluster
+#             TEST_NAME: gpcheckcat
+#           output_mapping:
+#             coverage: demo-coverage
+#         - task: publish_demo_coverage
+#           image: gpdb6-centos7-test
+#           config:
+#             platform: linux
+#             inputs:
+#               - name: gpdb_src
+#               - name: demo-coverage
+#             run:
+#               path: gpdb_src/concourse/scripts/gsutil_sync
+#               args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+#             params:
+#               JSON_KEY: ((concourse-gcs-resources-service-account-key))
 
-- name: gpcheckcat_ubuntu18
-  plan:
-    - in_parallel:
-      - get: gpdb_src
-        params:
-          submodules:
-            - gpMgmt/bin/pythonSrc/ext
-        passed: [compile_gpdb_ubuntu18.04]
-      - get: gpdb6-ubuntu18.04-test
-    - in_parallel:
-      - do:
-        - get: gpdb_binary
-          resource: bin_gpdb_ubuntu18.04
-          passed: [compile_gpdb_ubuntu18.04]
-          trigger: true
-        - get: ccp_src
-        - put: terraform
-          params:
-            <<: *ccp_default_params
-            vars:
-              <<: *ccp_default_vars
-              instance_type: n1-standard-2
-              PLATFORM: ubuntu18.04
-              
-        - task: gen_cluster
-          file: ccp_src/ci/tasks/gen_cluster.yml
-          params:
-            <<: *ccp_gen_cluster_default_params
-            PLATFORM: ubuntu18.04
-        - task: gpinitsystem
-          file: ccp_src/ci/tasks/gpinitsystem.yml
-        - task: gpcheckcat_concourse_cluster_tests
-          file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
-          image: gpdb6-ubuntu18.04-test
-          params:
-            BEHAVE_FLAGS: --tags=gpcheckcat --tags=concourse_cluster
-            
-          on_success:
-            <<: *ccp_destroy
-          ensure:
-            <<: *set_failed
-      - do:
-        - get: bin_gpdb_ubuntu18.04
-          resource: bin_gpdb_ubuntu18.04
-          passed: [compile_gpdb_ubuntu18.04]
-          trigger: true
-        - task: gpcheckcat_demo_cluster_tests
-          file: gpdb_src/concourse/tasks/behave_gpdb.yml
-          image: gpdb6-ubuntu18.04-test
-          input_mapping:
-            bin_gpdb: bin_gpdb_ubuntu18.04
-          params:
-            BEHAVE_FLAGS: --tags=gpcheckcat --tags=~concourse_cluster,demo_cluster
-            
+# - name: gpcheckcat_ubuntu18
+#   plan:
+#     - in_parallel:
+#       - get: gpdb_src
+#         params:
+#           submodules:
+#             - gpMgmt/bin/pythonSrc/ext
+#         passed: [compile_gpdb_ubuntu18.04]
+#       - get: gpdb6-ubuntu18.04-test
+#     - in_parallel:
+#       - do:
+#         - get: gpdb_binary
+#           resource: bin_gpdb_ubuntu18.04
+#           passed: [compile_gpdb_ubuntu18.04]
+#           trigger: true
+#         - get: ccp_src
+#         - put: terraform
+#           params:
+#             <<: *ccp_default_params
+#             vars:
+#               <<: *ccp_default_vars
+#               instance_type: n1-standard-2
+#               PLATFORM: ubuntu18.04
+#         - task: gen_cluster
+#           file: ccp_src/ci/tasks/gen_cluster.yml
+#           params:
+#             <<: *ccp_gen_cluster_default_params
+#             PLATFORM: ubuntu18.04
+#         - task: gpinitsystem
+#           file: ccp_src/ci/tasks/gpinitsystem.yml
+#         - task: gpcheckcat_concourse_cluster_tests
+#           file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
+#           image: gpdb6-ubuntu18.04-test
+#           params:
+#             BEHAVE_FLAGS: --tags=gpcheckcat --tags=concourse_cluster
+#           on_success:
+#             <<: *ccp_destroy
+#           ensure:
+#             <<: *set_failed
+#       - do:
+#         - get: bin_gpdb_ubuntu18.04
+#           resource: bin_gpdb_ubuntu18.04
+#           passed: [compile_gpdb_ubuntu18.04]
+#           trigger: true
+#         - task: gpcheckcat_demo_cluster_tests
+#           file: gpdb_src/concourse/tasks/behave_gpdb.yml
+#           image: gpdb6-ubuntu18.04-test
+#           input_mapping:
+#             bin_gpdb: bin_gpdb_ubuntu18.04
+#           params:
+#             BEHAVE_FLAGS: --tags=gpcheckcat --tags=~concourse_cluster,demo_cluster
 
-- name: gprecoverseg
-  plan:
-    - in_parallel:
-      - get: gpdb_src
-        params:
-          submodules:
-            - gpMgmt/bin/pythonSrc/ext
-        passed: [gate_cli_start]
-      - get: gpdb6-centos6-test
-      - get: gpdb6-centos7-test
-    - in_parallel:
-      - do:
-        - get: gpdb_binary
-          resource: bin_gpdb_centos6
-          passed: [gate_cli_start]
-          trigger: true
-        - get: ccp_src
-        - get: ccp-image
-        - put: terraform
-          params:
-            <<: *ccp_default_params
-            vars:
-              <<: *ccp_default_vars
-              instance_type: n1-standard-2
-              
-        - task: gen_cluster
-          file: ccp_src/ci/tasks/gen_cluster.yml
-          params:
-            <<: *ccp_gen_cluster_default_params
-        - task: gpinitsystem
-          file: ccp_src/ci/tasks/gpinitsystem.yml
-        - task: gprecoverseg_concourse_cluster_tests
-          file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
-          image: ccp-image
-          params:
-            BEHAVE_FLAGS: --tags=gprecoverseg --tags=concourse_cluster
-            TEST_NAME: gprecoverseg
-            
-          on_success:
-            <<: *ccp_destroy
-          ensure:
-            <<: *set_failed
-          output_mapping:
-            coverage: ccp-coverage
-        - task: publish_ccp_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: ccp-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./ccp-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
-      - do:
-        - get: bin_gpdb
-          resource: bin_gpdb_centos6
-          passed: [gate_cli_start]
-          trigger: true
-        - task: gprecoverseg_demo_cluster_tests
-          file: gpdb_src/concourse/tasks/behave_gpdb.yml
-          image: gpdb6-centos6-test
-          params:
-            BEHAVE_FLAGS: --tags=gprecoverseg --tags=~concourse_cluster,demo_cluster
-            TEST_NAME: gprecoverseg
-            
-          output_mapping:
-            coverage: demo-coverage
-        - task: publish_demo_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: demo-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
+# - name: gprecoverseg
+#   plan:
+#     - in_parallel:
+#       - get: gpdb_src
+#         params:
+#           submodules:
+#             - gpMgmt/bin/pythonSrc/ext
+#         passed: [gate_cli_start]
+#       - get: gpdb6-centos6-test
+#       - get: gpdb6-centos7-test
+#     - in_parallel:
+#       - do:
+#         - get: gpdb_binary
+#           resource: bin_gpdb_centos6
+#           passed: [gate_cli_start]
+#           trigger: true
+#         - get: ccp_src
+#         - get: ccp-image
+#         - put: terraform
+#           params:
+#             <<: *ccp_default_params
+#             vars:
+#               <<: *ccp_default_vars
+#               instance_type: n1-standard-2
+#         - task: gen_cluster
+#           file: ccp_src/ci/tasks/gen_cluster.yml
+#           params:
+#             <<: *ccp_gen_cluster_default_params
+#         - task: gpinitsystem
+#           file: ccp_src/ci/tasks/gpinitsystem.yml
+#         - task: gprecoverseg_concourse_cluster_tests
+#           file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
+#           image: ccp-image
+#           params:
+#             BEHAVE_FLAGS: --tags=gprecoverseg --tags=concourse_cluster
+#             TEST_NAME: gprecoverseg
+#           on_success:
+#             <<: *ccp_destroy
+#           ensure:
+#             <<: *set_failed
+#           output_mapping:
+#             coverage: ccp-coverage
+#         - task: publish_ccp_coverage
+#           image: gpdb6-centos7-test
+#           config:
+#             platform: linux
+#             inputs:
+#               - name: gpdb_src
+#               - name: ccp-coverage
+#             run:
+#               path: gpdb_src/concourse/scripts/gsutil_sync
+#               args: [ "./ccp-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+#             params:
+#               JSON_KEY: ((concourse-gcs-resources-service-account-key))
+#       - do:
+#         - get: bin_gpdb
+#           resource: bin_gpdb_centos6
+#           passed: [gate_cli_start]
+#           trigger: true
+#         - task: gprecoverseg_demo_cluster_tests
+#           file: gpdb_src/concourse/tasks/behave_gpdb.yml
+#           image: gpdb6-centos6-test
+#           params:
+#             BEHAVE_FLAGS: --tags=gprecoverseg --tags=~concourse_cluster,demo_cluster
+#             TEST_NAME: gprecoverseg
+#           output_mapping:
+#             coverage: demo-coverage
+#         - task: publish_demo_coverage
+#           image: gpdb6-centos7-test
+#           config:
+#             platform: linux
+#             inputs:
+#               - name: gpdb_src
+#               - name: demo-coverage
+#             run:
+#               path: gpdb_src/concourse/scripts/gsutil_sync
+#               args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+#             params:
+#               JSON_KEY: ((concourse-gcs-resources-service-account-key))
 
-- name: gprecoverseg_ubuntu18
-  plan:
-    - in_parallel:
-      - get: gpdb_src
-        params:
-          submodules:
-            - gpMgmt/bin/pythonSrc/ext
-        passed: [compile_gpdb_ubuntu18.04]
-      - get: gpdb6-ubuntu18.04-test
-    - in_parallel:
-      - do:
-        - get: gpdb_binary
-          resource: bin_gpdb_ubuntu18.04
-          passed: [compile_gpdb_ubuntu18.04]
-          trigger: true
-        - get: ccp_src
-        - put: terraform
-          params:
-            <<: *ccp_default_params
-            vars:
-              <<: *ccp_default_vars
-              instance_type: n1-standard-2
-              PLATFORM: ubuntu18.04
-              
-        - task: gen_cluster
-          file: ccp_src/ci/tasks/gen_cluster.yml
-          params:
-            <<: *ccp_gen_cluster_default_params
-            PLATFORM: ubuntu18.04
-        - task: gpinitsystem
-          file: ccp_src/ci/tasks/gpinitsystem.yml
-        - task: gprecoverseg_concourse_cluster_tests
-          file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
-          image: gpdb6-ubuntu18.04-test
-          params:
-            BEHAVE_FLAGS: --tags=gprecoverseg --tags=concourse_cluster
-            
-          on_success:
-            <<: *ccp_destroy
-          ensure:
-            <<: *set_failed
-      - do:
-        - get: bin_gpdb_ubuntu18.04
-          resource: bin_gpdb_ubuntu18.04
-          passed: [compile_gpdb_ubuntu18.04]
-          trigger: true
-        - task: gprecoverseg_demo_cluster_tests
-          file: gpdb_src/concourse/tasks/behave_gpdb.yml
-          image: gpdb6-ubuntu18.04-test
-          input_mapping:
-            bin_gpdb: bin_gpdb_ubuntu18.04
-          params:
-            BEHAVE_FLAGS: --tags=gprecoverseg --tags=~concourse_cluster,demo_cluster
-            
+# - name: gprecoverseg_ubuntu18
+#   plan:
+#     - in_parallel:
+#       - get: gpdb_src
+#         params:
+#           submodules:
+#             - gpMgmt/bin/pythonSrc/ext
+#         passed: [compile_gpdb_ubuntu18.04]
+#       - get: gpdb6-ubuntu18.04-test
+#     - in_parallel:
+#       - do:
+#         - get: gpdb_binary
+#           resource: bin_gpdb_ubuntu18.04
+#           passed: [compile_gpdb_ubuntu18.04]
+#           trigger: true
+#         - get: ccp_src
+#         - put: terraform
+#           params:
+#             <<: *ccp_default_params
+#             vars:
+#               <<: *ccp_default_vars
+#               instance_type: n1-standard-2
+#               PLATFORM: ubuntu18.04
+#         - task: gen_cluster
+#           file: ccp_src/ci/tasks/gen_cluster.yml
+#           params:
+#             <<: *ccp_gen_cluster_default_params
+#             PLATFORM: ubuntu18.04
+#         - task: gpinitsystem
+#           file: ccp_src/ci/tasks/gpinitsystem.yml
+#         - task: gprecoverseg_concourse_cluster_tests
+#           file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
+#           image: gpdb6-ubuntu18.04-test
+#           params:
+#             BEHAVE_FLAGS: --tags=gprecoverseg --tags=concourse_cluster
+#           on_success:
+#             <<: *ccp_destroy
+#           ensure:
+#             <<: *set_failed
+#       - do:
+#         - get: bin_gpdb_ubuntu18.04
+#           resource: bin_gpdb_ubuntu18.04
+#           passed: [compile_gpdb_ubuntu18.04]
+#           trigger: true
+#         - task: gprecoverseg_demo_cluster_tests
+#           file: gpdb_src/concourse/tasks/behave_gpdb.yml
+#           image: gpdb6-ubuntu18.04-test
+#           input_mapping:
+#             bin_gpdb: bin_gpdb_ubuntu18.04
+#           params:
+#             BEHAVE_FLAGS: --tags=gprecoverseg --tags=~concourse_cluster,demo_cluster
 
-- name: gpaddmirrors
-  plan:
-    - in_parallel:
-      - get: gpdb_src
-        params:
-          submodules:
-            - gpMgmt/bin/pythonSrc/ext
-        passed: [gate_cli_start]
-      - get: gpdb6-centos6-test
-      - get: gpdb6-centos7-test
-    - in_parallel:
-      - do:
-        - get: gpdb_binary
-          resource: bin_gpdb_centos6
-          passed: [gate_cli_start]
-          trigger: true
-        - get: ccp_src
-        - get: ccp-image
-        - put: terraform
-          params:
-            <<: *ccp_default_params
-            vars:
-              <<: *ccp_default_vars
-              instance_type: n1-standard-2
-              number_of_nodes: 4
-        - task: gen_cluster
-          file: ccp_src/ci/tasks/gen_cluster.yml
-          params:
-            <<: *ccp_gen_cluster_default_params
-        - task: gpinitsystem
-          file: ccp_src/ci/tasks/gpinitsystem.yml
-        - task: gpaddmirrors_concourse_cluster_tests
-          file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
-          image: ccp-image
-          params:
-            BEHAVE_FLAGS: --tags=gpaddmirrors --tags=concourse_cluster
-            TEST_NAME: gpaddmirrors
-            
-          on_success:
-            <<: *ccp_destroy
-          ensure:
-            <<: *set_failed
-          output_mapping:
-            coverage: ccp-coverage
-        - task: publish_ccp_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: ccp-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./ccp-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
-      - do:
-        - get: bin_gpdb
-          resource: bin_gpdb_centos6
-          passed: [gate_cli_start]
-          trigger: true
-        - task: gpaddmirrors_demo_cluster_tests
-          file: gpdb_src/concourse/tasks/behave_gpdb.yml
-          image: gpdb6-centos6-test
-          params:
-            BEHAVE_FLAGS: --tags=gpaddmirrors --tags=~concourse_cluster,demo_cluster
-            TEST_NAME: gpaddmirrors
-            
-          output_mapping:
-            coverage: demo-coverage
-        - task: publish_demo_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: demo-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
+# - name: gpaddmirrors
+#   plan:
+#     - in_parallel:
+#       - get: gpdb_src
+#         params:
+#           submodules:
+#             - gpMgmt/bin/pythonSrc/ext
+#         passed: [gate_cli_start]
+#       - get: gpdb6-centos6-test
+#       - get: gpdb6-centos7-test
+#     - in_parallel:
+#       - do:
+#         - get: gpdb_binary
+#           resource: bin_gpdb_centos6
+#           passed: [gate_cli_start]
+#           trigger: true
+#         - get: ccp_src
+#         - get: ccp-image
+#         - put: terraform
+#           params:
+#             <<: *ccp_default_params
+#             vars:
+#               <<: *ccp_default_vars
+#               instance_type: n1-standard-2
+#               number_of_nodes: 4
+#         - task: gen_cluster
+#           file: ccp_src/ci/tasks/gen_cluster.yml
+#           params:
+#             <<: *ccp_gen_cluster_default_params
+#         - task: gpinitsystem
+#           file: ccp_src/ci/tasks/gpinitsystem.yml
+#         - task: gpaddmirrors_concourse_cluster_tests
+#           file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
+#           image: ccp-image
+#           params:
+#             BEHAVE_FLAGS: --tags=gpaddmirrors --tags=concourse_cluster
+#             TEST_NAME: gpaddmirrors
+#           on_success:
+#             <<: *ccp_destroy
+#           ensure:
+#             <<: *set_failed
+#           output_mapping:
+#             coverage: ccp-coverage
+#         - task: publish_ccp_coverage
+#           image: gpdb6-centos7-test
+#           config:
+#             platform: linux
+#             inputs:
+#               - name: gpdb_src
+#               - name: ccp-coverage
+#             run:
+#               path: gpdb_src/concourse/scripts/gsutil_sync
+#               args: [ "./ccp-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+#             params:
+#               JSON_KEY: ((concourse-gcs-resources-service-account-key))
+#       - do:
+#         - get: bin_gpdb
+#           resource: bin_gpdb_centos6
+#           passed: [gate_cli_start]
+#           trigger: true
+#         - task: gpaddmirrors_demo_cluster_tests
+#           file: gpdb_src/concourse/tasks/behave_gpdb.yml
+#           image: gpdb6-centos6-test
+#           params:
+#             BEHAVE_FLAGS: --tags=gpaddmirrors --tags=~concourse_cluster,demo_cluster
+#             TEST_NAME: gpaddmirrors
+#           output_mapping:
+#             coverage: demo-coverage
+#         - task: publish_demo_coverage
+#           image: gpdb6-centos7-test
+#           config:
+#             platform: linux
+#             inputs:
+#               - name: gpdb_src
+#               - name: demo-coverage
+#             run:
+#               path: gpdb_src/concourse/scripts/gsutil_sync
+#               args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+#             params:
+#               JSON_KEY: ((concourse-gcs-resources-service-account-key))
 
-- name: gpaddmirrors_ubuntu18
-  plan:
-    - in_parallel:
-      - get: gpdb_src
-        params:
-          submodules:
-            - gpMgmt/bin/pythonSrc/ext
-        passed: [compile_gpdb_ubuntu18.04]
-      - get: gpdb6-ubuntu18.04-test
-    - in_parallel:
-      - do:
-        - get: gpdb_binary
-          resource: bin_gpdb_ubuntu18.04
-          passed: [compile_gpdb_ubuntu18.04]
-          trigger: true
-        - get: ccp_src
-        - put: terraform
-          params:
-            <<: *ccp_default_params
-            vars:
-              <<: *ccp_default_vars
-              instance_type: n1-standard-2
-              PLATFORM: ubuntu18.04
-              number_of_nodes: 4
-        - task: gen_cluster
-          file: ccp_src/ci/tasks/gen_cluster.yml
-          params:
-            <<: *ccp_gen_cluster_default_params
-            PLATFORM: ubuntu18.04
-        - task: gpinitsystem
-          file: ccp_src/ci/tasks/gpinitsystem.yml
-        - task: gpaddmirrors_concourse_cluster_tests
-          file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
-          image: gpdb6-ubuntu18.04-test
-          params:
-            BEHAVE_FLAGS: --tags=gpaddmirrors --tags=concourse_cluster
-            
-          on_success:
-            <<: *ccp_destroy
-          ensure:
-            <<: *set_failed
-      - do:
-        - get: bin_gpdb_ubuntu18.04
-          resource: bin_gpdb_ubuntu18.04
-          passed: [compile_gpdb_ubuntu18.04]
-          trigger: true
-        - task: gpaddmirrors_demo_cluster_tests
-          file: gpdb_src/concourse/tasks/behave_gpdb.yml
-          image: gpdb6-ubuntu18.04-test
-          input_mapping:
-            bin_gpdb: bin_gpdb_ubuntu18.04
-          params:
-            BEHAVE_FLAGS: --tags=gpaddmirrors --tags=~concourse_cluster,demo_cluster
-            
+# - name: gpaddmirrors_ubuntu18
+#   plan:
+#     - in_parallel:
+#       - get: gpdb_src
+#         params:
+#           submodules:
+#             - gpMgmt/bin/pythonSrc/ext
+#         passed: [compile_gpdb_ubuntu18.04]
+#       - get: gpdb6-ubuntu18.04-test
+#     - in_parallel:
+#       - do:
+#         - get: gpdb_binary
+#           resource: bin_gpdb_ubuntu18.04
+#           passed: [compile_gpdb_ubuntu18.04]
+#           trigger: true
+#         - get: ccp_src
+#         - put: terraform
+#           params:
+#             <<: *ccp_default_params
+#             vars:
+#               <<: *ccp_default_vars
+#               instance_type: n1-standard-2
+#               PLATFORM: ubuntu18.04
+#               number_of_nodes: 4
+#         - task: gen_cluster
+#           file: ccp_src/ci/tasks/gen_cluster.yml
+#           params:
+#             <<: *ccp_gen_cluster_default_params
+#             PLATFORM: ubuntu18.04
+#         - task: gpinitsystem
+#           file: ccp_src/ci/tasks/gpinitsystem.yml
+#         - task: gpaddmirrors_concourse_cluster_tests
+#           file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
+#           image: gpdb6-ubuntu18.04-test
+#           params:
+#             BEHAVE_FLAGS: --tags=gpaddmirrors --tags=concourse_cluster
+#           on_success:
+#             <<: *ccp_destroy
+#           ensure:
+#             <<: *set_failed
+#       - do:
+#         - get: bin_gpdb_ubuntu18.04
+#           resource: bin_gpdb_ubuntu18.04
+#           passed: [compile_gpdb_ubuntu18.04]
+#           trigger: true
+#         - task: gpaddmirrors_demo_cluster_tests
+#           file: gpdb_src/concourse/tasks/behave_gpdb.yml
+#           image: gpdb6-ubuntu18.04-test
+#           input_mapping:
+#             bin_gpdb: bin_gpdb_ubuntu18.04
+#           params:
+#             BEHAVE_FLAGS: --tags=gpaddmirrors --tags=~concourse_cluster,demo_cluster
 
-- name: gpconfig
-  plan:
-    - in_parallel:
-      - get: gpdb_src
-        params:
-          submodules:
-            - gpMgmt/bin/pythonSrc/ext
-        passed: [gate_cli_start]
-      - get: gpdb6-centos6-test
-      - get: gpdb6-centos7-test
-    - in_parallel:
-      - do:
-        - get: gpdb_binary
-          resource: bin_gpdb_centos6
-          passed: [gate_cli_start]
-          trigger: true
-        - get: ccp_src
-        - get: ccp-image
-        - put: terraform
-          params:
-            <<: *ccp_default_params
-            vars:
-              <<: *ccp_default_vars
-              instance_type: n1-standard-2
-              
-        - task: gen_cluster
-          file: ccp_src/ci/tasks/gen_cluster.yml
-          params:
-            <<: *ccp_gen_cluster_default_params
-        - task: gpinitsystem
-          file: ccp_src/ci/tasks/gpinitsystem.yml
-        - task: gpconfig_concourse_cluster_tests
-          file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
-          image: ccp-image
-          params:
-            BEHAVE_FLAGS: --tags=gpconfig --tags=concourse_cluster
-            TEST_NAME: gpconfig
-            LC_CTYPE: en_US.UTF-8
-          on_success:
-            <<: *ccp_destroy
-          ensure:
-            <<: *set_failed
-          output_mapping:
-            coverage: ccp-coverage
-        - task: publish_ccp_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: ccp-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./ccp-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
-      - do:
-        - get: bin_gpdb
-          resource: bin_gpdb_centos6
-          passed: [gate_cli_start]
-          trigger: true
-        - task: gpconfig_demo_cluster_tests
-          file: gpdb_src/concourse/tasks/behave_gpdb.yml
-          image: gpdb6-centos6-test
-          params:
-            BEHAVE_FLAGS: --tags=gpconfig --tags=~concourse_cluster,demo_cluster
-            TEST_NAME: gpconfig
-            LC_CTYPE: en_US.UTF-8
-          output_mapping:
-            coverage: demo-coverage
-        - task: publish_demo_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: demo-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
+# - name: gpconfig
+#   plan:
+#     - in_parallel:
+#       - get: gpdb_src
+#         params:
+#           submodules:
+#             - gpMgmt/bin/pythonSrc/ext
+#         passed: [gate_cli_start]
+#       - get: gpdb6-centos6-test
+#       - get: gpdb6-centos7-test
+#     - in_parallel:
+#       - do:
+#         - get: gpdb_binary
+#           resource: bin_gpdb_centos6
+#           passed: [gate_cli_start]
+#           trigger: true
+#         - get: ccp_src
+#         - get: ccp-image
+#         - put: terraform
+#           params:
+#             <<: *ccp_default_params
+#             vars:
+#               <<: *ccp_default_vars
+#               instance_type: n1-standard-2
+#         - task: gen_cluster
+#           file: ccp_src/ci/tasks/gen_cluster.yml
+#           params:
+#             <<: *ccp_gen_cluster_default_params
+#         - task: gpinitsystem
+#           file: ccp_src/ci/tasks/gpinitsystem.yml
+#         - task: gpconfig_concourse_cluster_tests
+#           file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
+#           image: ccp-image
+#           params:
+#             BEHAVE_FLAGS: --tags=gpconfig --tags=concourse_cluster
+#             TEST_NAME: gpconfig
+#             LC_CTYPE: en_US.UTF-8
+#           on_success:
+#             <<: *ccp_destroy
+#           ensure:
+#             <<: *set_failed
+#           output_mapping:
+#             coverage: ccp-coverage
+#         - task: publish_ccp_coverage
+#           image: gpdb6-centos7-test
+#           config:
+#             platform: linux
+#             inputs:
+#               - name: gpdb_src
+#               - name: ccp-coverage
+#             run:
+#               path: gpdb_src/concourse/scripts/gsutil_sync
+#               args: [ "./ccp-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+#             params:
+#               JSON_KEY: ((concourse-gcs-resources-service-account-key))
+#       - do:
+#         - get: bin_gpdb
+#           resource: bin_gpdb_centos6
+#           passed: [gate_cli_start]
+#           trigger: true
+#         - task: gpconfig_demo_cluster_tests
+#           file: gpdb_src/concourse/tasks/behave_gpdb.yml
+#           image: gpdb6-centos6-test
+#           params:
+#             BEHAVE_FLAGS: --tags=gpconfig --tags=~concourse_cluster,demo_cluster
+#             TEST_NAME: gpconfig
+#             LC_CTYPE: en_US.UTF-8
+#           output_mapping:
+#             coverage: demo-coverage
+#         - task: publish_demo_coverage
+#           image: gpdb6-centos7-test
+#           config:
+#             platform: linux
+#             inputs:
+#               - name: gpdb_src
+#               - name: demo-coverage
+#             run:
+#               path: gpdb_src/concourse/scripts/gsutil_sync
+#               args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+#             params:
+#               JSON_KEY: ((concourse-gcs-resources-service-account-key))
 
-- name: gpconfig_ubuntu18
-  plan:
-    - in_parallel:
-      - get: gpdb_src
-        params:
-          submodules:
-            - gpMgmt/bin/pythonSrc/ext
-        passed: [compile_gpdb_ubuntu18.04]
-      - get: gpdb6-ubuntu18.04-test
-    - in_parallel:
-      - do:
-        - get: gpdb_binary
-          resource: bin_gpdb_ubuntu18.04
-          passed: [compile_gpdb_ubuntu18.04]
-          trigger: true
-        - get: ccp_src
-        - put: terraform
-          params:
-            <<: *ccp_default_params
-            vars:
-              <<: *ccp_default_vars
-              instance_type: n1-standard-2
-              PLATFORM: ubuntu18.04
-              
-        - task: gen_cluster
-          file: ccp_src/ci/tasks/gen_cluster.yml
-          params:
-            <<: *ccp_gen_cluster_default_params
-            PLATFORM: ubuntu18.04
-        - task: gpinitsystem
-          file: ccp_src/ci/tasks/gpinitsystem.yml
-        - task: gpconfig_concourse_cluster_tests
-          file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
-          image: gpdb6-ubuntu18.04-test
-          params:
-            BEHAVE_FLAGS: --tags=gpconfig --tags=concourse_cluster
-            LC_CTYPE: en_US.UTF-8
-          on_success:
-            <<: *ccp_destroy
-          ensure:
-            <<: *set_failed
-      - do:
-        - get: bin_gpdb_ubuntu18.04
-          resource: bin_gpdb_ubuntu18.04
-          passed: [compile_gpdb_ubuntu18.04]
-          trigger: true
-        - task: gpconfig_demo_cluster_tests
-          file: gpdb_src/concourse/tasks/behave_gpdb.yml
-          image: gpdb6-ubuntu18.04-test
-          input_mapping:
-            bin_gpdb: bin_gpdb_ubuntu18.04
-          params:
-            BEHAVE_FLAGS: --tags=gpconfig --tags=~concourse_cluster,demo_cluster
-            LC_CTYPE: en_US.UTF-8
+# - name: gpconfig_ubuntu18
+#   plan:
+#     - in_parallel:
+#       - get: gpdb_src
+#         params:
+#           submodules:
+#             - gpMgmt/bin/pythonSrc/ext
+#         passed: [compile_gpdb_ubuntu18.04]
+#       - get: gpdb6-ubuntu18.04-test
+#     - in_parallel:
+#       - do:
+#         - get: gpdb_binary
+#           resource: bin_gpdb_ubuntu18.04
+#           passed: [compile_gpdb_ubuntu18.04]
+#           trigger: true
+#         - get: ccp_src
+#         - put: terraform
+#           params:
+#             <<: *ccp_default_params
+#             vars:
+#               <<: *ccp_default_vars
+#               instance_type: n1-standard-2
+#               PLATFORM: ubuntu18.04
+#         - task: gen_cluster
+#           file: ccp_src/ci/tasks/gen_cluster.yml
+#           params:
+#             <<: *ccp_gen_cluster_default_params
+#             PLATFORM: ubuntu18.04
+#         - task: gpinitsystem
+#           file: ccp_src/ci/tasks/gpinitsystem.yml
+#         - task: gpconfig_concourse_cluster_tests
+#           file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
+#           image: gpdb6-ubuntu18.04-test
+#           params:
+#             BEHAVE_FLAGS: --tags=gpconfig --tags=concourse_cluster
+#             LC_CTYPE: en_US.UTF-8
+#           on_success:
+#             <<: *ccp_destroy
+#           ensure:
+#             <<: *set_failed
+#       - do:
+#         - get: bin_gpdb_ubuntu18.04
+#           resource: bin_gpdb_ubuntu18.04
+#           passed: [compile_gpdb_ubuntu18.04]
+#           trigger: true
+#         - task: gpconfig_demo_cluster_tests
+#           file: gpdb_src/concourse/tasks/behave_gpdb.yml
+#           image: gpdb6-ubuntu18.04-test
+#           input_mapping:
+#             bin_gpdb: bin_gpdb_ubuntu18.04
+#           params:
+#             BEHAVE_FLAGS: --tags=gpconfig --tags=~concourse_cluster,demo_cluster
+#             LC_CTYPE: en_US.UTF-8
 
-- name: gpssh-exkeys
-  plan:
-    - in_parallel:
-      - get: gpdb_src
-        params:
-          submodules:
-            - gpMgmt/bin/pythonSrc/ext
-        passed: [gate_cli_start]
-      - get: gpdb6-centos6-test
-      - get: gpdb6-centos7-test
-    - in_parallel:
-      - do:
-        - get: gpdb_binary
-          resource: bin_gpdb_centos6
-          passed: [gate_cli_start]
-          trigger: true
-        - get: ccp_src
-        - get: ccp-image
-        - put: terraform
-          params:
-            <<: *ccp_default_params
-            vars:
-              <<: *ccp_default_vars
-              instance_type: n1-standard-2
-              number_of_nodes: 4
-        - task: gen_cluster
-          file: ccp_src/ci/tasks/gen_cluster.yml
-          params:
-            <<: *ccp_gen_cluster_default_params
-        - task: gpinitsystem
-          file: ccp_src/ci/tasks/gpinitsystem.yml
-        - task: gpssh-exkeys_concourse_cluster_tests
-          file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
-          image: ccp-image
-          params:
-            BEHAVE_FLAGS: --tags=gpssh-exkeys --tags=concourse_cluster
-            TEST_NAME: gpssh-exkeys
-            
-          on_success:
-            <<: *ccp_destroy
-          ensure:
-            <<: *set_failed
-          output_mapping:
-            coverage: ccp-coverage
-        - task: publish_ccp_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: ccp-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./ccp-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
-      - do:
-        - get: bin_gpdb
-          resource: bin_gpdb_centos6
-          passed: [gate_cli_start]
-          trigger: true
-        - task: gpssh-exkeys_demo_cluster_tests
-          file: gpdb_src/concourse/tasks/behave_gpdb.yml
-          image: gpdb6-centos6-test
-          params:
-            BEHAVE_FLAGS: --tags=gpssh-exkeys --tags=~concourse_cluster,demo_cluster
-            TEST_NAME: gpssh-exkeys
-            
-          output_mapping:
-            coverage: demo-coverage
-        - task: publish_demo_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: demo-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
+# - name: gpssh-exkeys
+#   plan:
+#     - in_parallel:
+#       - get: gpdb_src
+#         params:
+#           submodules:
+#             - gpMgmt/bin/pythonSrc/ext
+#         passed: [gate_cli_start]
+#       - get: gpdb6-centos6-test
+#       - get: gpdb6-centos7-test
+#     - in_parallel:
+#       - do:
+#         - get: gpdb_binary
+#           resource: bin_gpdb_centos6
+#           passed: [gate_cli_start]
+#           trigger: true
+#         - get: ccp_src
+#         - get: ccp-image
+#         - put: terraform
+#           params:
+#             <<: *ccp_default_params
+#             vars:
+#               <<: *ccp_default_vars
+#               instance_type: n1-standard-2
+#               number_of_nodes: 4
+#         - task: gen_cluster
+#           file: ccp_src/ci/tasks/gen_cluster.yml
+#           params:
+#             <<: *ccp_gen_cluster_default_params
+#         - task: gpinitsystem
+#           file: ccp_src/ci/tasks/gpinitsystem.yml
+#         - task: gpssh-exkeys_concourse_cluster_tests
+#           file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
+#           image: ccp-image
+#           params:
+#             BEHAVE_FLAGS: --tags=gpssh-exkeys --tags=concourse_cluster
+#             TEST_NAME: gpssh-exkeys
+#           on_success:
+#             <<: *ccp_destroy
+#           ensure:
+#             <<: *set_failed
+#           output_mapping:
+#             coverage: ccp-coverage
+#         - task: publish_ccp_coverage
+#           image: gpdb6-centos7-test
+#           config:
+#             platform: linux
+#             inputs:
+#               - name: gpdb_src
+#               - name: ccp-coverage
+#             run:
+#               path: gpdb_src/concourse/scripts/gsutil_sync
+#               args: [ "./ccp-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+#             params:
+#               JSON_KEY: ((concourse-gcs-resources-service-account-key))
+#       - do:
+#         - get: bin_gpdb
+#           resource: bin_gpdb_centos6
+#           passed: [gate_cli_start]
+#           trigger: true
+#         - task: gpssh-exkeys_demo_cluster_tests
+#           file: gpdb_src/concourse/tasks/behave_gpdb.yml
+#           image: gpdb6-centos6-test
+#           params:
+#             BEHAVE_FLAGS: --tags=gpssh-exkeys --tags=~concourse_cluster,demo_cluster
+#             TEST_NAME: gpssh-exkeys
+#           output_mapping:
+#             coverage: demo-coverage
+#         - task: publish_demo_coverage
+#           image: gpdb6-centos7-test
+#           config:
+#             platform: linux
+#             inputs:
+#               - name: gpdb_src
+#               - name: demo-coverage
+#             run:
+#               path: gpdb_src/concourse/scripts/gsutil_sync
+#               args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+#             params:
+#               JSON_KEY: ((concourse-gcs-resources-service-account-key))
 
-- name: gpssh-exkeys_ubuntu18
-  plan:
-    - in_parallel:
-      - get: gpdb_src
-        params:
-          submodules:
-            - gpMgmt/bin/pythonSrc/ext
-        passed: [compile_gpdb_ubuntu18.04]
-      - get: gpdb6-ubuntu18.04-test
-    - in_parallel:
-      - do:
-        - get: gpdb_binary
-          resource: bin_gpdb_ubuntu18.04
-          passed: [compile_gpdb_ubuntu18.04]
-          trigger: true
-        - get: ccp_src
-        - put: terraform
-          params:
-            <<: *ccp_default_params
-            vars:
-              <<: *ccp_default_vars
-              instance_type: n1-standard-2
-              PLATFORM: ubuntu18.04
-              number_of_nodes: 4
-        - task: gen_cluster
-          file: ccp_src/ci/tasks/gen_cluster.yml
-          params:
-            <<: *ccp_gen_cluster_default_params
-            PLATFORM: ubuntu18.04
-        - task: gpinitsystem
-          file: ccp_src/ci/tasks/gpinitsystem.yml
-        - task: gpssh-exkeys_concourse_cluster_tests
-          file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
-          image: gpdb6-ubuntu18.04-test
-          params:
-            BEHAVE_FLAGS: --tags=gpssh-exkeys --tags=concourse_cluster
-            
-          on_success:
-            <<: *ccp_destroy
-          ensure:
-            <<: *set_failed
-      - do:
-        - get: bin_gpdb_ubuntu18.04
-          resource: bin_gpdb_ubuntu18.04
-          passed: [compile_gpdb_ubuntu18.04]
-          trigger: true
-        - task: gpssh-exkeys_demo_cluster_tests
-          file: gpdb_src/concourse/tasks/behave_gpdb.yml
-          image: gpdb6-ubuntu18.04-test
-          input_mapping:
-            bin_gpdb: bin_gpdb_ubuntu18.04
-          params:
-            BEHAVE_FLAGS: --tags=gpssh-exkeys --tags=~concourse_cluster,demo_cluster
-            
+# - name: gpssh-exkeys_ubuntu18
+#   plan:
+#     - in_parallel:
+#       - get: gpdb_src
+#         params:
+#           submodules:
+#             - gpMgmt/bin/pythonSrc/ext
+#         passed: [compile_gpdb_ubuntu18.04]
+#       - get: gpdb6-ubuntu18.04-test
+#     - in_parallel:
+#       - do:
+#         - get: gpdb_binary
+#           resource: bin_gpdb_ubuntu18.04
+#           passed: [compile_gpdb_ubuntu18.04]
+#           trigger: true
+#         - get: ccp_src
+#         - put: terraform
+#           params:
+#             <<: *ccp_default_params
+#             vars:
+#               <<: *ccp_default_vars
+#               instance_type: n1-standard-2
+#               PLATFORM: ubuntu18.04
+#               number_of_nodes: 4
+#         - task: gen_cluster
+#           file: ccp_src/ci/tasks/gen_cluster.yml
+#           params:
+#             <<: *ccp_gen_cluster_default_params
+#             PLATFORM: ubuntu18.04
+#         - task: gpinitsystem
+#           file: ccp_src/ci/tasks/gpinitsystem.yml
+#         - task: gpssh-exkeys_concourse_cluster_tests
+#           file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
+#           image: gpdb6-ubuntu18.04-test
+#           params:
+#             BEHAVE_FLAGS: --tags=gpssh-exkeys --tags=concourse_cluster
+#           on_success:
+#             <<: *ccp_destroy
+#           ensure:
+#             <<: *set_failed
+#       - do:
+#         - get: bin_gpdb_ubuntu18.04
+#           resource: bin_gpdb_ubuntu18.04
+#           passed: [compile_gpdb_ubuntu18.04]
+#           trigger: true
+#         - task: gpssh-exkeys_demo_cluster_tests
+#           file: gpdb_src/concourse/tasks/behave_gpdb.yml
+#           image: gpdb6-ubuntu18.04-test
+#           input_mapping:
+#             bin_gpdb: bin_gpdb_ubuntu18.04
+#           params:
+#             BEHAVE_FLAGS: --tags=gpssh-exkeys --tags=~concourse_cluster,demo_cluster
 
-- name: gpstop
-  plan:
-    - in_parallel:
-      - get: gpdb_src
-        params:
-          submodules:
-            - gpMgmt/bin/pythonSrc/ext
-        passed: [gate_cli_start]
-      - get: gpdb6-centos6-test
-      - get: gpdb6-centos7-test
-    - in_parallel:
-      - do:
-        - get: gpdb_binary
-          resource: bin_gpdb_centos6
-          passed: [gate_cli_start]
-          trigger: true
-        - get: ccp_src
-        - get: ccp-image
-        - put: terraform
-          params:
-            <<: *ccp_default_params
-            vars:
-              <<: *ccp_default_vars
-              instance_type: n1-standard-2
-              
-        - task: gen_cluster
-          file: ccp_src/ci/tasks/gen_cluster.yml
-          params:
-            <<: *ccp_gen_cluster_default_params
-        - task: gpinitsystem
-          file: ccp_src/ci/tasks/gpinitsystem.yml
-        - task: gpstop_concourse_cluster_tests
-          file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
-          image: ccp-image
-          params:
-            BEHAVE_FLAGS: --tags=gpstop --tags=concourse_cluster
-            TEST_NAME: gpstop
-            
-          on_success:
-            <<: *ccp_destroy
-          ensure:
-            <<: *set_failed
-          output_mapping:
-            coverage: ccp-coverage
-        - task: publish_ccp_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: ccp-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./ccp-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
-      - do:
-        - get: bin_gpdb
-          resource: bin_gpdb_centos6
-          passed: [gate_cli_start]
-          trigger: true
-        - task: gpstop_demo_cluster_tests
-          file: gpdb_src/concourse/tasks/behave_gpdb.yml
-          image: gpdb6-centos6-test
-          params:
-            BEHAVE_FLAGS: --tags=gpstop --tags=~concourse_cluster,demo_cluster
-            TEST_NAME: gpstop
-            
-          output_mapping:
-            coverage: demo-coverage
-        - task: publish_demo_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: demo-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
+# - name: gpstop
+#   plan:
+#     - in_parallel:
+#       - get: gpdb_src
+#         params:
+#           submodules:
+#             - gpMgmt/bin/pythonSrc/ext
+#         passed: [gate_cli_start]
+#       - get: gpdb6-centos6-test
+#       - get: gpdb6-centos7-test
+#     - in_parallel:
+#       - do:
+#         - get: gpdb_binary
+#           resource: bin_gpdb_centos6
+#           passed: [gate_cli_start]
+#           trigger: true
+#         - get: ccp_src
+#         - get: ccp-image
+#         - put: terraform
+#           params:
+#             <<: *ccp_default_params
+#             vars:
+#               <<: *ccp_default_vars
+#               instance_type: n1-standard-2
+#         - task: gen_cluster
+#           file: ccp_src/ci/tasks/gen_cluster.yml
+#           params:
+#             <<: *ccp_gen_cluster_default_params
+#         - task: gpinitsystem
+#           file: ccp_src/ci/tasks/gpinitsystem.yml
+#         - task: gpstop_concourse_cluster_tests
+#           file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
+#           image: ccp-image
+#           params:
+#             BEHAVE_FLAGS: --tags=gpstop --tags=concourse_cluster
+#             TEST_NAME: gpstop
+#           on_success:
+#             <<: *ccp_destroy
+#           ensure:
+#             <<: *set_failed
+#           output_mapping:
+#             coverage: ccp-coverage
+#         - task: publish_ccp_coverage
+#           image: gpdb6-centos7-test
+#           config:
+#             platform: linux
+#             inputs:
+#               - name: gpdb_src
+#               - name: ccp-coverage
+#             run:
+#               path: gpdb_src/concourse/scripts/gsutil_sync
+#               args: [ "./ccp-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+#             params:
+#               JSON_KEY: ((concourse-gcs-resources-service-account-key))
+#       - do:
+#         - get: bin_gpdb
+#           resource: bin_gpdb_centos6
+#           passed: [gate_cli_start]
+#           trigger: true
+#         - task: gpstop_demo_cluster_tests
+#           file: gpdb_src/concourse/tasks/behave_gpdb.yml
+#           image: gpdb6-centos6-test
+#           params:
+#             BEHAVE_FLAGS: --tags=gpstop --tags=~concourse_cluster,demo_cluster
+#             TEST_NAME: gpstop
+#           output_mapping:
+#             coverage: demo-coverage
+#         - task: publish_demo_coverage
+#           image: gpdb6-centos7-test
+#           config:
+#             platform: linux
+#             inputs:
+#               - name: gpdb_src
+#               - name: demo-coverage
+#             run:
+#               path: gpdb_src/concourse/scripts/gsutil_sync
+#               args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+#             params:
+#               JSON_KEY: ((concourse-gcs-resources-service-account-key))
 
-- name: gpstop_ubuntu18
-  plan:
-    - in_parallel:
-      - get: gpdb_src
-        params:
-          submodules:
-            - gpMgmt/bin/pythonSrc/ext
-        passed: [compile_gpdb_ubuntu18.04]
-      - get: gpdb6-ubuntu18.04-test
-    - in_parallel:
-      - do:
-        - get: gpdb_binary
-          resource: bin_gpdb_ubuntu18.04
-          passed: [compile_gpdb_ubuntu18.04]
-          trigger: true
-        - get: ccp_src
-        - put: terraform
-          params:
-            <<: *ccp_default_params
-            vars:
-              <<: *ccp_default_vars
-              instance_type: n1-standard-2
-              PLATFORM: ubuntu18.04
-              
-        - task: gen_cluster
-          file: ccp_src/ci/tasks/gen_cluster.yml
-          params:
-            <<: *ccp_gen_cluster_default_params
-            PLATFORM: ubuntu18.04
-        - task: gpinitsystem
-          file: ccp_src/ci/tasks/gpinitsystem.yml
-        - task: gpstop_concourse_cluster_tests
-          file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
-          image: gpdb6-ubuntu18.04-test
-          params:
-            BEHAVE_FLAGS: --tags=gpstop --tags=concourse_cluster
-            
-          on_success:
-            <<: *ccp_destroy
-          ensure:
-            <<: *set_failed
-      - do:
-        - get: bin_gpdb_ubuntu18.04
-          resource: bin_gpdb_ubuntu18.04
-          passed: [compile_gpdb_ubuntu18.04]
-          trigger: true
-        - task: gpstop_demo_cluster_tests
-          file: gpdb_src/concourse/tasks/behave_gpdb.yml
-          image: gpdb6-ubuntu18.04-test
-          input_mapping:
-            bin_gpdb: bin_gpdb_ubuntu18.04
-          params:
-            BEHAVE_FLAGS: --tags=gpstop --tags=~concourse_cluster,demo_cluster
+# - name: gpstop_ubuntu18
+#   plan:
+#     - in_parallel:
+#       - get: gpdb_src
+#         params:
+#           submodules:
+#             - gpMgmt/bin/pythonSrc/ext
+#         passed: [compile_gpdb_ubuntu18.04]
+#       - get: gpdb6-ubuntu18.04-test
+#     - in_parallel:
+#       - do:
+#         - get: gpdb_binary
+#           resource: bin_gpdb_ubuntu18.04
+#           passed: [compile_gpdb_ubuntu18.04]
+#           trigger: true
+#         - get: ccp_src
+#         - put: terraform
+#           params:
+#             <<: *ccp_default_params
+#             vars:
+#               <<: *ccp_default_vars
+#               instance_type: n1-standard-2
+#               PLATFORM: ubuntu18.04
+#         - task: gen_cluster
+#           file: ccp_src/ci/tasks/gen_cluster.yml
+#           params:
+#             <<: *ccp_gen_cluster_default_params
+#             PLATFORM: ubuntu18.04
+#         - task: gpinitsystem
+#           file: ccp_src/ci/tasks/gpinitsystem.yml
+#         - task: gpstop_concourse_cluster_tests
+#           file: gpdb_src/concourse/tasks/run_behave_on_ccp_cluster.yml
+#           image: gpdb6-ubuntu18.04-test
+#           params:
+#             BEHAVE_FLAGS: --tags=gpstop --tags=concourse_cluster
+#           on_success:
+#             <<: *ccp_destroy
+#           ensure:
+#             <<: *set_failed
+#       - do:
+#         - get: bin_gpdb_ubuntu18.04
+#           resource: bin_gpdb_ubuntu18.04
+#           passed: [compile_gpdb_ubuntu18.04]
+#           trigger: true
+#         - task: gpstop_demo_cluster_tests
+#           file: gpdb_src/concourse/tasks/behave_gpdb.yml
+#           image: gpdb6-ubuntu18.04-test
+#           input_mapping:
+#             bin_gpdb: bin_gpdb_ubuntu18.04
+#           params:
+#             BEHAVE_FLAGS: --tags=gpstop --tags=~concourse_cluster,demo_cluster
 
- # end CLI test_sections
+#  # end CLI test_sections
 
 ## ======================================================================
 ##    __      _                 _
