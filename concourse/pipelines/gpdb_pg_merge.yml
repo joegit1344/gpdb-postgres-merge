@@ -747,6 +747,7 @@ jobs:
       trigger: true
     - get: gpdb6-centos6-test
   - task: ic_gpdb
+    tags: ["icw-workers"]
     timeout: 5h
     privileged: false #true
     file: gpdb_src/concourse/tasks/ic_gpdb_binary_swap.yml
@@ -768,6 +769,7 @@ jobs:
       trigger: true
     - get: gpdb6-centos6-test
   - task: ic_gpdb
+    tags: ["icw-workers"]
     timeout: 5h
     privileged: false #true
     file: gpdb_src/concourse/tasks/ic_gpdb.yml
@@ -792,6 +794,7 @@ jobs:
       trigger: true
     - get: gpdb6-centos6-test
   - task: ic_gpdb
+    tags: ["icw-workers"]
     timeout: 5h
     privileged: false #true
     file: gpdb_src/concourse/tasks/ic_gpdb.yml
@@ -813,6 +816,7 @@ jobs:
       trigger: true
     - get: gpdb6-centos6-test
   - task: ic_gpdb
+    tags: ["icw-workers"]
     timeout: 5h
     privileged: false #true
     file: gpdb_src/concourse/tasks/ic_gpdb.yml
@@ -832,6 +836,7 @@ jobs:
       trigger: true
     - get: gpdb6-centos7-test
   - task: ic_gpdb
+    tags: ["icw-workers"]
     timeout: 5h
     privileged: false #true
     file: gpdb_src/concourse/tasks/ic_gpdb.yml
@@ -852,6 +857,7 @@ jobs:
       trigger: true
     - get: gpdb6-centos7-test
   - task: ic_gpdb
+    tags: ["icw-workers"]
     timeout: 5h
     privileged: false #true
     file: gpdb_src/concourse/tasks/ic_gpdb.yml
@@ -872,6 +878,7 @@ jobs:
           trigger: true
         - get: gpdb6-ubuntu18.04-test
     - task: ic_gpdb
+      tags: ["icw-workers"]
       file: gpdb_src/concourse/tasks/ic_gpdb.yml
       image: gpdb6-ubuntu18.04-test
       params:
@@ -890,6 +897,7 @@ jobs:
           trigger: true
         - get: gpdb6-ubuntu18.04-test
     - task: ic_gpdb
+      tags: ["icw-workers"]
       timeout: 5h
       privileged: false #true
       file: gpdb_src/concourse/tasks/ic_gpdb.yml
@@ -917,6 +925,7 @@ jobs:
       trigger: true
     - get: gpdb6-centos6-test
   - task: ic_gpdb
+    tags: ["icw-workers"]
     file: gpdb_src/concourse/tasks/ic_gpdb.yml
     image: gpdb6-centos6-test
     params:
@@ -1156,6 +1165,7 @@ jobs:
     - get: gpdb6-centos6-test
     - get: gpdb6-centos7-test
   - task: check_centos
+    tags: ["cli-workers"]
     file: gpdb_src/concourse/tasks/gpMgmt_check_gpdb.yml
     image: gpdb6-centos6-test
     params:
@@ -1457,6 +1467,7 @@ jobs:
           passed: [gate_cli_start]
           trigger: true
         - task: analyzedb_demo_cluster_tests
+          tags: ["cli-workers"]
           file: gpdb_src/concourse/tasks/behave_gpdb.yml
           image: gpdb6-centos6-test
           params:
@@ -1517,6 +1528,7 @@ jobs:
           passed: [gate_cli_start]
           trigger: true
         - task: gpinitsystem_demo_cluster_tests
+          tags: ["cli-workers"]
           file: gpdb_src/concourse/tasks/behave_gpdb.yml
           image: gpdb6-centos6-test
           params:
@@ -1553,6 +1565,7 @@ jobs:
           passed: [compile_gpdb_ubuntu18.04]
           trigger: true
         - task: gpinitsystem_demo_cluster_tests
+          tags: ["cli-workers"]
           file: gpdb_src/concourse/tasks/behave_gpdb.yml
           image: gpdb6-ubuntu18.04-test
           input_mapping:
@@ -1577,6 +1590,7 @@ jobs:
           passed: [gate_cli_start]
           trigger: true
         - task: gpstate_demo_cluster_tests
+          tags: ["cli-workers"]
           file: gpdb_src/concourse/tasks/behave_gpdb.yml
           image: gpdb6-centos6-test
           params:
@@ -1613,13 +1627,13 @@ jobs:
           passed: [compile_gpdb_ubuntu18.04]
           trigger: true
         - task: gpstate_demo_cluster_tests
+          tags: ["cli-workers"]
           file: gpdb_src/concourse/tasks/behave_gpdb.yml
           image: gpdb6-ubuntu18.04-test
           input_mapping:
             bin_gpdb: bin_gpdb_ubuntu18.04
           params:
             BEHAVE_FLAGS: --tags=gpstate --tags=~concourse_cluster,demo_cluster
-            
 
 - name: replication_slots
   plan:
@@ -1638,12 +1652,12 @@ jobs:
           passed: [gate_cli_start]
           trigger: true
         - task: replication_slots_demo_cluster_tests
+          tags: ["cli-workers"]
           file: gpdb_src/concourse/tasks/behave_gpdb.yml
           image: gpdb6-centos6-test
           params:
             BEHAVE_FLAGS: --tags=replication_slots --tags=~concourse_cluster,demo_cluster
             TEST_NAME: replication_slots
-            
           output_mapping:
             coverage: demo-coverage
         - task: publish_demo_coverage
@@ -1675,6 +1689,7 @@ jobs:
           passed: [compile_gpdb_ubuntu18.04]
           trigger: true
         - task: replication_slots_demo_cluster_tests
+          tags: ["cli-workers"]
           file: gpdb_src/concourse/tasks/behave_gpdb.yml
           image: gpdb6-ubuntu18.04-test
           input_mapping:
@@ -1831,6 +1846,7 @@ jobs:
           passed: [gate_cli_start]
           trigger: true
         - task: gpinitstandby_demo_cluster_tests
+          tags: ["cli-workers"]
           file: gpdb_src/concourse/tasks/behave_gpdb.yml
           image: gpdb6-centos6-test
           params:
@@ -1867,6 +1883,7 @@ jobs:
           passed: [compile_gpdb_ubuntu18.04]
           trigger: true
         - task: gpinitstandby_demo_cluster_tests
+          tags: ["cli-workers"]
           file: gpdb_src/concourse/tasks/behave_gpdb.yml
           image: gpdb6-ubuntu18.04-test
           input_mapping:
