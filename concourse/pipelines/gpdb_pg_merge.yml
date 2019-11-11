@@ -878,6 +878,7 @@ jobs:
           trigger: true
         - get: gpdb6-ubuntu18.04-test
     - task: ic_gpdb
+      timeout: 5h
       tags: ["icw-workers"]
       file: gpdb_src/concourse/tasks/ic_gpdb.yml
       image: gpdb6-ubuntu18.04-test
@@ -925,6 +926,7 @@ jobs:
       trigger: true
     - get: gpdb6-centos6-test
   - task: ic_gpdb
+    timeout: 5h
     tags: ["icw-workers"]
     file: gpdb_src/concourse/tasks/ic_gpdb.yml
     image: gpdb6-centos6-test
