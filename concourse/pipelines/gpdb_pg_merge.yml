@@ -1089,18 +1089,18 @@ jobs:
     params:
       BEHAVE_TAGS: gpperfmon
       TEST_NAME: gpperfmon_centos6
-  - task: publish_coverage
-    image: gpdb6-centos7-test
-    config:
-      platform: linux
-      inputs:
-        - name: gpdb_src
-        - name: coverage
-      run:
-        path: gpdb_src/concourse/scripts/gsutil_sync
-        args: [ "./coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-      params:
-        JSON_KEY: ((concourse-gcs-resources-service-account-key))
+  # - task: publish_coverage
+  #   image: gpdb6-centos7-test
+  #   config:
+  #     platform: linux
+  #     inputs:
+  #       - name: gpdb_src
+  #       - name: coverage
+  #     run:
+  #       path: gpdb_src/concourse/scripts/gsutil_sync
+  #       args: [ "./coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+  #     params:
+  #       JSON_KEY: ((concourse-gcs-resources-service-account-key))
 
 - name: gpperfmon_centos7
   plan:
@@ -1121,20 +1121,18 @@ jobs:
     params:
       BEHAVE_TAGS: gpperfmon
       TEST_NAME: gpperfmon_centos7
-  - task: publish_coverage
-    image: gpdb6-centos7-test
-    config:
-      platform: linux
-      inputs:
-        - name: gpdb_src
-        - name: coverage
-      run:
-        path: gpdb_src/concourse/scripts/gsutil_sync
-        args: [ "./coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-      params:
-        JSON_KEY: ((concourse-gcs-resources-service-account-key))
-
-
+  # - task: publish_coverage
+  #   image: gpdb6-centos7-test
+  #   config:
+  #     platform: linux
+  #     inputs:
+  #       - name: gpdb_src
+  #       - name: coverage
+  #     run:
+  #       path: gpdb_src/concourse/scripts/gsutil_sync
+  #       args: [ "./coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+  #     params:
+  #       JSON_KEY: ((concourse-gcs-resources-service-account-key))
 
 ## ======================================================================
 ##   ____ _     ___
@@ -1173,18 +1171,18 @@ jobs:
     params:
       TEST_OS: centos
       TEST_NAME: gpmgmt_unit_tests
-  - task: publish_coverage
-    image: gpdb6-centos7-test
-    config:
-      platform: linux
-      inputs:
-        - name: gpdb_src
-        - name: coverage
-      run:
-        path: gpdb_src/concourse/scripts/gsutil_sync
-        args: [ "./coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-      params:
-        JSON_KEY: ((concourse-gcs-resources-service-account-key))
+  # - task: publish_coverage
+  #   image: gpdb6-centos7-test
+  #   config:
+  #     platform: linux
+  #     inputs:
+  #       - name: gpdb_src
+  #       - name: coverage
+  #     run:
+  #       path: gpdb_src/concourse/scripts/gsutil_sync
+  #       args: [ "./coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+  #     params:
+  #       JSON_KEY: ((concourse-gcs-resources-service-account-key))
 
 # - name: gpmovemirrors
 #   plan:
@@ -1477,18 +1475,18 @@ jobs:
             TEST_NAME: analyzedb
           output_mapping:
             coverage: demo-coverage
-        - task: publish_demo_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: demo-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
+        # - task: publish_demo_coverage
+        #   image: gpdb6-centos7-test
+        #   config:
+        #     platform: linux
+        #     inputs:
+        #       - name: gpdb_src
+        #       - name: demo-coverage
+        #     run:
+        #       path: gpdb_src/concourse/scripts/gsutil_sync
+        #       args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+        #     params:
+        #       JSON_KEY: ((concourse-gcs-resources-service-account-key))
 
 - name: analyzedb_ubuntu18
   plan:
@@ -1538,18 +1536,18 @@ jobs:
             TEST_NAME: gpinitsystem
           output_mapping:
             coverage: demo-coverage
-        - task: publish_demo_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: demo-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
+        # - task: publish_demo_coverage
+        #   image: gpdb6-centos7-test
+        #   config:
+        #     platform: linux
+        #     inputs:
+        #       - name: gpdb_src
+        #       - name: demo-coverage
+        #     run:
+        #       path: gpdb_src/concourse/scripts/gsutil_sync
+        #       args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+        #     params:
+        #       JSON_KEY: ((concourse-gcs-resources-service-account-key))
 
 - name: gpinitsystem_ubuntu18
   plan:
@@ -1600,18 +1598,18 @@ jobs:
             TEST_NAME: gpstate
           output_mapping:
             coverage: demo-coverage
-        - task: publish_demo_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: demo-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
+        # - task: publish_demo_coverage
+        #   image: gpdb6-centos7-test
+        #   config:
+        #     platform: linux
+        #     inputs:
+        #       - name: gpdb_src
+        #       - name: demo-coverage
+        #     run:
+        #       path: gpdb_src/concourse/scripts/gsutil_sync
+        #       args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+        #     params:
+        #       JSON_KEY: ((concourse-gcs-resources-service-account-key))
 
 - name: gpstate_ubuntu18
   plan:
@@ -1662,18 +1660,18 @@ jobs:
             TEST_NAME: replication_slots
           output_mapping:
             coverage: demo-coverage
-        - task: publish_demo_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: demo-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
+        # - task: publish_demo_coverage
+        #   image: gpdb6-centos7-test
+        #   config:
+        #     platform: linux
+        #     inputs:
+        #       - name: gpdb_src
+        #       - name: demo-coverage
+        #     run:
+        #       path: gpdb_src/concourse/scripts/gsutil_sync
+        #       args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+        #     params:
+        #       JSON_KEY: ((concourse-gcs-resources-service-account-key))
 
 - name: replication_slots_ubuntu18
   plan:
@@ -1856,18 +1854,18 @@ jobs:
             TEST_NAME: gpinitstandby
           output_mapping:
             coverage: demo-coverage
-        - task: publish_demo_coverage
-          image: gpdb6-centos7-test
-          config:
-            platform: linux
-            inputs:
-              - name: gpdb_src
-              - name: demo-coverage
-            run:
-              path: gpdb_src/concourse/scripts/gsutil_sync
-              args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
-            params:
-              JSON_KEY: ((concourse-gcs-resources-service-account-key))
+        # - task: publish_demo_coverage
+        #   image: gpdb6-centos7-test
+        #   config:
+        #     platform: linux
+        #     inputs:
+        #       - name: gpdb_src
+        #       - name: demo-coverage
+        #     run:
+        #       path: gpdb_src/concourse/scripts/gsutil_sync
+        #       args: [ "./demo-coverage/", "gs://((coverage-bucket-name))/((pipeline-name))/" ]
+        #     params:
+        #       JSON_KEY: ((concourse-gcs-resources-service-account-key))
 
 - name: gpinitstandby_ubuntu18
   plan:
