@@ -737,6 +737,7 @@ jobs:
   - in_parallel:
     - get: gpdb_src
       passed: [compile_gpdb_centos6]
+      trigger: true
     - get: bin_gpdb
       passed: [compile_gpdb_centos6]
       resource: bin_gpdb_centos6
@@ -747,7 +748,6 @@ jobs:
       trigger: true
     - get: gpdb6-centos6-test
   - task: ic_gpdb
-    tags: ["icw-workers"]
     timeout: 5h
     privileged: false #true
     file: gpdb_src/concourse/tasks/ic_gpdb_binary_swap.yml
@@ -762,6 +762,7 @@ jobs:
   plan:
   - in_parallel:
     - get: gpdb_src
+      trigger: true
       passed: [compile_gpdb_centos6]
     - get: bin_gpdb
       resource: bin_gpdb_centos6
@@ -769,7 +770,6 @@ jobs:
       trigger: true
     - get: gpdb6-centos6-test
   - task: ic_gpdb
-    tags: ["icw-workers"]
     timeout: 5h
     privileged: false #true
     file: gpdb_src/concourse/tasks/ic_gpdb.yml
@@ -787,6 +787,7 @@ jobs:
   plan:
   - in_parallel:
     - get: gpdb_src
+      trigger: true
       passed: [compile_gpdb_centos6]
     - get: bin_gpdb
       resource: bin_gpdb_centos6
@@ -794,7 +795,6 @@ jobs:
       trigger: true
     - get: gpdb6-centos6-test
   - task: ic_gpdb
-    tags: ["icw-workers"]
     timeout: 5h
     privileged: false #true
     file: gpdb_src/concourse/tasks/ic_gpdb.yml
@@ -809,6 +809,7 @@ jobs:
   plan:
   - in_parallel:
     - get: gpdb_src
+      trigger: true
       passed: [compile_gpdb_centos6]
     - get: bin_gpdb
       resource: bin_gpdb_centos6
@@ -816,7 +817,6 @@ jobs:
       trigger: true
     - get: gpdb6-centos6-test
   - task: ic_gpdb
-    tags: ["icw-workers"]
     timeout: 5h
     privileged: false #true
     file: gpdb_src/concourse/tasks/ic_gpdb.yml
@@ -829,6 +829,7 @@ jobs:
   plan:
   - in_parallel:
     - get: gpdb_src
+      trigger: true
       passed: [compile_gpdb_centos7]
     - get: bin_gpdb
       resource: bin_gpdb_centos7
@@ -836,7 +837,6 @@ jobs:
       trigger: true
     - get: gpdb6-centos7-test
   - task: ic_gpdb
-    tags: ["icw-workers"]
     timeout: 5h
     privileged: false #true
     file: gpdb_src/concourse/tasks/ic_gpdb.yml
@@ -850,6 +850,7 @@ jobs:
   plan:
   - in_parallel:
     - get: gpdb_src
+      trigger: true
       passed: [compile_gpdb_centos7]
     - get: bin_gpdb
       passed: [compile_gpdb_centos7]
@@ -857,7 +858,6 @@ jobs:
       trigger: true
     - get: gpdb6-centos7-test
   - task: ic_gpdb
-    tags: ["icw-workers"]
     timeout: 5h
     privileged: false #true
     file: gpdb_src/concourse/tasks/ic_gpdb.yml
@@ -871,6 +871,7 @@ jobs:
   plan:
     - in_parallel:
         - get: gpdb_src
+          trigger: true
           passed: [compile_gpdb_ubuntu18.04]
         - get: bin_gpdb
           resource: bin_gpdb_ubuntu18.04
@@ -879,7 +880,6 @@ jobs:
         - get: gpdb6-ubuntu18.04-test
     - task: ic_gpdb
       timeout: 5h
-      tags: ["icw-workers"]
       file: gpdb_src/concourse/tasks/ic_gpdb.yml
       image: gpdb6-ubuntu18.04-test
       params:
@@ -891,6 +891,7 @@ jobs:
   plan:
     - in_parallel:
         - get: gpdb_src
+          trigger: true
           passed: [compile_gpdb_ubuntu18.04]
         - get: bin_gpdb
           passed: [compile_gpdb_ubuntu18.04]
@@ -898,7 +899,6 @@ jobs:
           trigger: true
         - get: gpdb6-ubuntu18.04-test
     - task: ic_gpdb
-      tags: ["icw-workers"]
       timeout: 5h
       privileged: false #true
       file: gpdb_src/concourse/tasks/ic_gpdb.yml
@@ -919,6 +919,7 @@ jobs:
   plan:
   - in_parallel:
     - get: gpdb_src
+      trigger: true
       passed: [compile_gpdb_centos6]
     - get: bin_gpdb
       passed: [compile_gpdb_centos6]
@@ -927,7 +928,6 @@ jobs:
     - get: gpdb6-centos6-test
   - task: ic_gpdb
     timeout: 5h
-    tags: ["icw-workers"]
     file: gpdb_src/concourse/tasks/ic_gpdb.yml
     image: gpdb6-centos6-test
     params:
@@ -1077,6 +1077,7 @@ jobs:
         submodules:
         - gpMgmt/bin/pythonSrc/ext
       passed: [gate_gpperfmon_start]
+      trigger: true
     - get: bin_gpdb
       resource: bin_gpdb_centos6
       passed: [gate_gpperfmon_start]
@@ -1110,6 +1111,7 @@ jobs:
         submodules:
         - gpMgmt/bin/pythonSrc/ext
       passed: [gate_gpperfmon_start]
+      trigger: true
     - get: bin_gpdb
       resource: bin_gpdb_centos7
       passed: [gate_gpperfmon_start]
@@ -1158,6 +1160,7 @@ jobs:
   - in_parallel:
     - get: gpdb_src
       passed: [gate_cli_start]
+      trigger: true
     - get: bin_gpdb
       resource: bin_gpdb_centos6
       passed: [gate_cli_start]
@@ -1165,7 +1168,6 @@ jobs:
     - get: gpdb6-centos6-test
     - get: gpdb6-centos7-test
   - task: check_centos
-    tags: ["cli-workers"]
     file: gpdb_src/concourse/tasks/gpMgmt_check_gpdb.yml
     image: gpdb6-centos6-test
     params:
@@ -1458,6 +1460,7 @@ jobs:
           submodules:
             - gpMgmt/bin/pythonSrc/ext
         passed: [gate_cli_start]
+        trigger: true
       - get: gpdb6-centos6-test
       - get: gpdb6-centos7-test
     - in_parallel:
@@ -1467,7 +1470,6 @@ jobs:
           passed: [gate_cli_start]
           trigger: true
         - task: analyzedb_demo_cluster_tests
-          tags: ["cli-workers"]
           file: gpdb_src/concourse/tasks/behave_gpdb.yml
           image: gpdb6-centos6-test
           params:
@@ -1519,6 +1521,7 @@ jobs:
           submodules:
             - gpMgmt/bin/pythonSrc/ext
         passed: [gate_cli_start]
+        trigger: true
       - get: gpdb6-centos6-test
       - get: gpdb6-centos7-test
     - in_parallel:
@@ -1528,7 +1531,6 @@ jobs:
           passed: [gate_cli_start]
           trigger: true
         - task: gpinitsystem_demo_cluster_tests
-          tags: ["cli-workers"]
           file: gpdb_src/concourse/tasks/behave_gpdb.yml
           image: gpdb6-centos6-test
           params:
@@ -1557,6 +1559,7 @@ jobs:
           submodules:
             - gpMgmt/bin/pythonSrc/ext
         passed: [compile_gpdb_ubuntu18.04]
+        trigger: true
       - get: gpdb6-ubuntu18.04-test
     - in_parallel:
       - do:
@@ -1565,7 +1568,6 @@ jobs:
           passed: [compile_gpdb_ubuntu18.04]
           trigger: true
         - task: gpinitsystem_demo_cluster_tests
-          tags: ["cli-workers"]
           file: gpdb_src/concourse/tasks/behave_gpdb.yml
           image: gpdb6-ubuntu18.04-test
           input_mapping:
@@ -1580,6 +1582,7 @@ jobs:
         params:
           submodules:
             - gpMgmt/bin/pythonSrc/ext
+        trigger: true
         passed: [gate_cli_start]
       - get: gpdb6-centos6-test
       - get: gpdb6-centos7-test
@@ -1590,7 +1593,6 @@ jobs:
           passed: [gate_cli_start]
           trigger: true
         - task: gpstate_demo_cluster_tests
-          tags: ["cli-workers"]
           file: gpdb_src/concourse/tasks/behave_gpdb.yml
           image: gpdb6-centos6-test
           params:
@@ -1619,6 +1621,7 @@ jobs:
           submodules:
             - gpMgmt/bin/pythonSrc/ext
         passed: [compile_gpdb_ubuntu18.04]
+        trigger: true
       - get: gpdb6-ubuntu18.04-test
     - in_parallel:
       - do:
@@ -1627,7 +1630,6 @@ jobs:
           passed: [compile_gpdb_ubuntu18.04]
           trigger: true
         - task: gpstate_demo_cluster_tests
-          tags: ["cli-workers"]
           file: gpdb_src/concourse/tasks/behave_gpdb.yml
           image: gpdb6-ubuntu18.04-test
           input_mapping:
@@ -1642,6 +1644,7 @@ jobs:
         params:
           submodules:
             - gpMgmt/bin/pythonSrc/ext
+        trigger: true
         passed: [gate_cli_start]
       - get: gpdb6-centos6-test
       - get: gpdb6-centos7-test
@@ -1652,7 +1655,6 @@ jobs:
           passed: [gate_cli_start]
           trigger: true
         - task: replication_slots_demo_cluster_tests
-          tags: ["cli-workers"]
           file: gpdb_src/concourse/tasks/behave_gpdb.yml
           image: gpdb6-centos6-test
           params:
@@ -1681,6 +1683,7 @@ jobs:
           submodules:
             - gpMgmt/bin/pythonSrc/ext
         passed: [compile_gpdb_ubuntu18.04]
+        trigger: true
       - get: gpdb6-ubuntu18.04-test
     - in_parallel:
       - do:
@@ -1689,7 +1692,6 @@ jobs:
           passed: [compile_gpdb_ubuntu18.04]
           trigger: true
         - task: replication_slots_demo_cluster_tests
-          tags: ["cli-workers"]
           file: gpdb_src/concourse/tasks/behave_gpdb.yml
           image: gpdb6-ubuntu18.04-test
           input_mapping:
@@ -1836,6 +1838,7 @@ jobs:
         params:
           submodules:
             - gpMgmt/bin/pythonSrc/ext
+        trigger: true
         passed: [gate_cli_start]
       - get: gpdb6-centos6-test
       - get: gpdb6-centos7-test
@@ -1846,7 +1849,6 @@ jobs:
           passed: [gate_cli_start]
           trigger: true
         - task: gpinitstandby_demo_cluster_tests
-          tags: ["cli-workers"]
           file: gpdb_src/concourse/tasks/behave_gpdb.yml
           image: gpdb6-centos6-test
           params:
@@ -1875,6 +1877,7 @@ jobs:
           submodules:
             - gpMgmt/bin/pythonSrc/ext
         passed: [compile_gpdb_ubuntu18.04]
+        trigger: true
       - get: gpdb6-ubuntu18.04-test
     - in_parallel:
       - do:
@@ -1883,7 +1886,6 @@ jobs:
           passed: [compile_gpdb_ubuntu18.04]
           trigger: true
         - task: gpinitstandby_demo_cluster_tests
-          tags: ["cli-workers"]
           file: gpdb_src/concourse/tasks/behave_gpdb.yml
           image: gpdb6-ubuntu18.04-test
           input_mapping:
